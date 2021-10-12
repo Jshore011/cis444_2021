@@ -1,12 +1,12 @@
 from flask import Flask,render_template,request
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 
-import jwt
+#import jwt
 
 
 import datetime
 
-from db_con import get_db_instance, get_db
+#from db_con import get_db_instance, get_db
 
 app = Flask(__name__)
 FlaskJSON(app)
@@ -20,13 +20,13 @@ IMGS_URL = {
             }
 
 CUR_ENV = "PRD"
-JWT_SECRET = None
+#JWT_SECRET = None
 
-global_db_con = get_db()
+#global_db_con = get_db()
 
 
-with open("secret", "r") as f:
-    JWT_SECRET = f.read()
+#with open("secret", "r") as f:
+#    JWT_SECRET = f.read()
 
 @app.route('/') #endpoint
 def index():
@@ -60,33 +60,33 @@ def auth():
 def ss1():
     return render_template('server_time.html', server_time= str(datetime.datetime.now()) )
 
-@app.route('/getTime') #endpoint
-def get_time():
-    return json_response(data={"password" : request.args.get('password'),
-                                "class" : "cis44",
-                                "serverTime":str(datetime.datetime.now())
-                            }
-                )
+#@app.route('/getTime') #endpoint
+#def get_time():
+   # return json_response(data={"password" : request.args.get('password'),
+   #                             "class" : "cis44",
+  #                              "serverTime":str(datetime.datetime.now())
+  #                          }
+ #               )
 
-@app.route('/auth2') #endpoint
-def auth2():
-    jwt_str = jwt.encode({"username" : "cary", "age" : "so young"} , JWT_SECRET, algorithm="HS256")
+#@app.route('/auth2') #endpoint
+#def auth2():
+#    jwt_str = jwt.encode({"username" : "cary", "age" : "so young"} , JWT_SECRET, algorithm="HS256")
     #print(request.form['username'])
-    return json_response(jwt=jwt_str)
+#    return json_response(jwt=jwt_str)
 
-@app.route('/exposejwt') #endpoint
-def exposejwt():
-    jwt_token = request.args.get('jwt')
-    print(jwt_token)
-    return json_response(output=jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))
+#@app.route('/exposejwt') #endpoint
+#def exposejwt():
+#    jwt_token = request.args.get('jwt')
+#    print(jwt_token)
+#    return json_response(output=jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))
 
 
-@app.route('/hellodb') #endpoint
-def hellodb():
-    cur = global_db_con.cursor()
-    cur.execute("select 5+5, 1+1");
-    first,second = cur.fetchone()
-    return json_response(a=first, b=second)
+#@app.route('/hellodb') #endpoint
+#def hellodb():
+#    cur = global_db_con.cursor()
+#    cur.execute("select 5+5, 1+1");
+#    first,second = cur.fetchone()
+#    return json_response(a=first, b=second)
 
 
 app.run(host='0.0.0.0', port=80)

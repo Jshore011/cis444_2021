@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- head definitions go here -->
-	 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+
+        *{
+                cursor: url(https://cur.cursors-4u.net/food/foo-2/foo143.cur), auto !important;
+
+        }
+        body{
+                background-image:url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-202104-airfryerhotdogs-044-1619472270.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+
+        }
+        h1{
+
+                color:red;
+                size:45;
+        }
+
+        iframe{
+                display: block;
+                margin-left:auto;
+                margin-right:auto;
+        }
+
+
+    </style>
+        <!-- head definitions go here -->:
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
     <body>
-	            <script>
 
-               			 setInterval( function(){ $('#mytime').html( "Client Time is " + new Date());}, 500);
-				 setInterval( function(){ $('#hello').html( "hello");}, 500);
-        	</script>
-	    <h1 id="mytime"></h1>
-	    <h2 id="hello"> </h2>
-	    <h1>Server Time is {{server_time}}</h1>
+            <marquee behavior="alternate";><h1>Time is {{server_time}}</h1></marquee>
+        <script>
+            setInterval( function(){ $('#mytime').html( "Time is " {{server_time}});}, 500);
+        </script>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/lQG9TvORZhA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
     </body>
 </html>

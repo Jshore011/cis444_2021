@@ -1,10 +1,15 @@
 from flask import Flask,render_template,request
 from flask_json import FlaskJSON, JsonError, json_response, as_json
+<<<<<<< HEAD
 
 #import jwt
-
+=======
+import jwt
+>>>>>>> b55fc97eba173b0a0cc1a00ccfeb959617673510
 
 import datetime
+import bcrypt
+
 
 #from db_con import get_db_instance, get_db
 
@@ -46,11 +51,17 @@ def back():
 
 @app.route('/backp',  methods=['POST']) #endpoint
 def backp():
+    print(request.form)
+    salted = bcrypt.hashpw( bytes(request.form['fname'],  'utf-8' ) , bcrypt.gensalt(10))
+    print(salted)
+
+    print(  bcrypt.checkpw(  bytes(request.form['fname'],  'utf-8' )  , salted ))
+
     return render_template('backatu.html',input_from_browser= str(request.form) )
 
 @app.route('/auth',  methods=['POST']) #endpoint
 def auth():
-        #print(request.form['username'])
+        print(request.form)
         return json_response(data=request.form)
 
 
@@ -60,6 +71,7 @@ def auth():
 def ss1():
     return render_template('server_time.html', server_time= str(datetime.datetime.now()) )
 
+<<<<<<< HEAD
 #@app.route('/getTime') #endpoint
 #def get_time():
    # return json_response(data={"password" : request.args.get('password'),
@@ -71,6 +83,22 @@ def ss1():
 #@app.route('/auth2') #endpoint
 #def auth2():
 #    jwt_str = jwt.encode({"username" : "cary", "age" : "so young"} , JWT_SECRET, algorithm="HS256")
+=======
+@app.route('/getTime') #endpoint
+def get_time():
+    return json_response(data={"password" : request.args.get('password'),
+                                "class" : "cis44",
+                                "serverTime":str(datetime.datetime.now())
+                            }
+                )
+
+@app.route('/auth2') #endpoint
+def auth2():
+    jwt_str = jwt.encode({"username" : "cary",
+                            "age" : "so young",
+                            "books_ordered" : ['f', 'e'] } 
+                            , JWT_SECRET, algorithm="HS256")
+>>>>>>> b55fc97eba173b0a0cc1a00ccfeb959617673510
     #print(request.form['username'])
 #    return json_response(jwt=jwt_str)
 
@@ -81,12 +109,21 @@ def ss1():
 #    return json_response(output=jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))
 
 
+<<<<<<< HEAD
 #@app.route('/hellodb') #endpoint
 #def hellodb():
 #    cur = global_db_con.cursor()
 #    cur.execute("select 5+5, 1+1");
 #    first,second = cur.fetchone()
 #    return json_response(a=first, b=second)
+=======
+@app.route('/hellodb') #endpoint
+def hellodb():
+    cur = global_db_con.cursor()
+    cur.execute("insert into music values( 'dsjfkjdkf', 1);")
+    global_db_con.commit()
+    return json_response(status="good")
+>>>>>>> b55fc97eba173b0a0cc1a00ccfeb959617673510
 
 
 app.run(host='0.0.0.0', port=80)

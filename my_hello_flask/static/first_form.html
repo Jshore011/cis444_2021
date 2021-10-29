@@ -87,6 +87,19 @@
 
                 }
 
+		#signup{
+			width: 382px;
+                        overflow: hidden;
+                        display: none;
+                        margin-top:300px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        padding: 80px;
+                        background: red;
+                        border-radius: 10px;
+
+		}
+
 
 
         </style>
@@ -123,16 +136,50 @@
 				return true;
 			}
 		}
+		}
+			function  show_signup(){
+
+				$('#loginContainer').hide();
+				$('#signup').show();
+
+				if($('#pass').val().length == 0){
+
+                        	$('#signup').hide();
+                        	$('#loginContainer').show();
+
+                        	alert('sign in');
+
+
+                        		return false;
+
+                        	if($('#pass').val().length == 0){
+                                	return false;
+                        	}else{
+                                	return true;
+                        	}
+
+
+			}
 	</script>
 	    <h1>Welcome to Beantown Books!</h1>
 	    	<div id = "loginContainer">
-	             <form action="/getuser" method="post">
+	             <form action="/auth" method="post">
   				<label for="username">Username:</label><br>
   					<input type="text" id="username" name="uname" value=" "><br>
   				<label for="password">Password:</label><br>
   					<input type="password" id="pass" name="pass" value=" "><br><br>
-  				<input type="submit" value="Signup" onclick="return check_form();">
+  				<input type="submit" value="Signup" onclick="return show_signup();">
+				<input type="submit2" value="Login" onclick="return check_form();">
 		      </form>
+		  <div id = "signup">
+                     <form action="/signup" method="post">
+                                <label for="username">Username:</label><br>
+                                        <input type="text" id="username" name="uname" value=" "><br>
+                                <label for="password">Password:</label><br>
+                                        <input type="password" id="pass" name="pass" value=" "><br><br>
+                                <input type="submit" value="Signup" onclick="return show_signup();">
+                      </form>
+
 	   	 </div>
 	    	 <div id="books" style="display:none">
 		    	<h1>Buy me</h1>

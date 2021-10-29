@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-from flask_json import FlaskJSON, JsonError, json_response, as_json
+from flask_json import FlaskJSON, JsonError, json_response, as_json, jsonify
 
 import jwt
 import datetime
@@ -17,87 +17,85 @@ IMGS_URL = {
             "INT" : "https://cis-444-fall-2021.s3.us-west-2.amazonaws.com/images",
             "PRD" : "http://d2cbuxq67vowa3.cloudfront.net/images"
             }
-
-CUR_ENV = "PRD"
-JWT_SECRET = None
-
 global_db_con = get_db()
+CUR_ENV = "PRD"
 
+JWT_TOKEN= None
+SECRET = "why is connecting to a database so annoying"
 
-with open("secret", "r") as f:
-    JWT_SECRET = f.read()
-
-@app.route('/') #endpoint
-def index():
-    return 'Web App with Python Caprice!' + USER_PASSWORDS['cjardin']
 
 @app.route('/buy') #endpoint
 def buy():
     return 'Buy'
 
-@app.route('/hello') #endpoint
-def hello():
-    return render_template('hello.html',img_url=IMGS_URL[CUR_ENV] ) 
 
-@app.route('/back',  methods=['GET']) #endpoint
-def back():
-    return render_template('backatu.html',input_from_browser=request.args.get('usay', default = "nothing", type = str) )
-
-@app.route('/backp',  methods=['POST']) #endpoint
-def backp():
-    return render_template('backatu.html',input_from_browser= str(request.form) )
-
-@app.route('/authme',  methods=['POST']) #endpoint
+#-------assignment3------#
+@app.route('/auth',  methods=['POST']) #endpoint
 def auth():
-        #print(request.form)
-        return json_response(data=request.form)
 
+    """authenticates a user using entered creds.
+    takes the entered credentials and checks the database to see if creds are valid.
+    if the account information is valid return a json response """
+    
+    '''get username from form'''
+    username  = request.form.get('username')
 
-
-#Assigment 2
-@app.route('/ss1') #endpoint
-def ss1():
-    return render_template('server_time.html', server_time= str(datetime.datetime.now()) )
-
-@app.route('/getTime') #endpoint
-def get_time():
-    return json_response(data={"password" : request.args.get('password'),
-                                "class" : "cis44",
-                                "serverTime":str(datetime.datetime.now())
-                            }
-                )
-
-@app.route('/auth2') #endpoint
-def auth2():
-    jwt_str = jwt.encode({"username" : "cary", "age" : "so young"} , JWT_SECRET, algorithm="HS256")
-    #print(request.form['username'])
-    return json_response(jwt=jwt_str)
-
-@app.route('/exposejwt') #endpoint
-def exposejwt():
-    jwt_token = request.args.get('jwt')
-    print(jwt_token)
-    return json_response(output=jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))
-
-
-@app.route('/hellodb') #endpoint
-def hellodb():
+    """use the username to query db for password"""
     cur = global_db_con.cursor()
-    cur.execute("select 5+5, 1+1");
-    first,second = cur.fetchone()
-    return json_response(a=first, b=second)
-
-
-#######assignment3
-@app.route('/getuser',  methods=['POST']) #endpoint
-def getuser():
-    cur = global_db_con.cursor()
-    cur.execute("select * from users where password = '" + jwt.encode({'password'}    , JWT_SECRET, algorithm=     "HS256") + "';");
+    cur.execute("SELECT password FROM users WHERE username = users.username;")
     dbpass = cur.fetchone()
-    salted = bcrypt.hashpw( bytes(request.form['password'], 'utf-8'), bcrypt.gensalt(10))
-    print(bcrypt.checkpw((first).salted))
+    cur.close();
 
-    return render_template('backatu.html',input_from_browser= str(request.form) )
+    """check if the username exists"""
+    if dbpass == None:
+        print('invalid password!')
+        return jsonify(logon = False)
+
+    """check if the form password matches the password from the db"""
+    if not bcrypt.checkpw(  bytes(request.form.get('pass'),  'utf-8' )  , str.encode(dbpass[0])):
+        print('invalid password')
+        return jsonify( logon = False)
+
+    """create a JWT with the username and password"""
+    encode_JWT =jwt.encode({'username': username, 'password': dbpass[0]}, SECRET, algorithm="HS256")
+    return jsonify(jwt=encode_JWT, logon = True)
+
+@app.route('/signup',  methods=['POST']) #endpoint
+def signup():
+
+    """Creates an account from input creds. checks the DB to ensure no doubles. if the new account is valid,
+    a JWT will be created to store the new users username and password."""
+
+    fusername =request.form.get('uname')
+    password = request.form.get('pass')
+
+    """check the DB for existing creds"""
+    cur = global_db_con.cursor()
+    cur.execute("SELECT username FROM users WHERE username = users.username;")
+    dbuname = cur.fetchone()
+
+    if dbuname == fusername:
+        print('username already exists! pick another dork')
+        return jsonify(logon =False)
+
+    """hash and salt the password"""
+    salted = bcrypt.hashpw( bytes(password, 'utf-8'), bcrypt.gensalt(10))
+    print(salted)
+    print(fusername)
+    """insert into DB"""
+    #cur.global_db_con.cursor()
+    unsalted=salted.decode('utf-8')
+    print(unsalted)
+    cur.execute("INSERT INTO users(username, password) VALUES ('"+fusername+"', '"+unsalted+"');")
+    cur.close()
+    global_db_con.commit()
+
+    """create the JWT"""
+    enc_JWT = jwt.encode({'username': fusername, 'password': unsalted}, SECRET, algorithm="HS256")
+
+
+    return jsonify(jwt=enc_JWT, logon = True)
+
 
 app.run(host='0.0.0.0', port=80)
 

@@ -4,6 +4,7 @@ from flask_json import FlaskJSON, JsonError, json_response, as_json, jsonify
 import jwt
 import datetime
 import bcrypt
+import db_con
 
 from db_con import get_db_instance, get_db
 
@@ -20,7 +21,7 @@ IMGS_URL = {
 global_db_con = get_db()
 CUR_ENV = "PRD"
 
-JWT_TOKEN= None
+global JWT
 SECRET = "why is connecting to a database so annoying"
 
 
@@ -30,36 +31,38 @@ def buy():
 
 
 #-------assignment3------#
+
+#------------------Login shiz----------------------#
 @app.route('/auth',  methods=['POST']) #endpoint
 def auth():
+        print("made it to auth!")
 
-    """authenticates a user using entered creds.
-    takes the entered credentials and checks the database to see if creds are valid.
-    if the account information is valid return a json response """
-    
-    '''get username from form'''
-    username  = request.form.get('username')
+        print(request.form.get("username"))
 
-    """use the username to query db for password"""
-    cur = global_db_con.cursor()
-    cur.execute("SELECT password FROM users WHERE username = users.username;")
-    dbpass = cur.fetchone()
-    cur.close();
+        cur=global_db_con.cursor()
+        cur.execute("select * from users where username = '" + str(request.form["log_name"]) + "';")
+        dbcredz = cur.fetchone()
+        cur.close()
+        print(dbcredz)
+        #check if credentials is in the database
+        if dbcredz[0] is None:
+            print("No User!")
+            return json_response( data={"message": "Invalid user name: " + str(request.form["log_name"])}, status = 404)
+        else:
+            print("in else statement!")
+            if bcrypt.checkpw(bytes(request.form["log_pass"], "utf-8"), bytes(dbcredz[2], "utf-8")) == True:
+                print("Successful Login, : " + str(request.form["log_name"]))
+            
+                JWT = jwt.encode( {"username": dbcredz[1],"password":dbcredz[2]}, SECRET, algorithm="HS256")
+                print(JWT)
+                return json_response( data={"jwt": JWT})
+            else:
+                print("Thats not the password, creeper!!")
 
-    """check if the username exists"""
-    if dbpass == None:
-        print('invalid password!')
-        return jsonify(logon = False)
+                return json_response( data={"message": "Incorrect Password"}, status = 404)
 
-    """check if the form password matches the password from the db"""
-    if not bcrypt.checkpw(  bytes(request.form.get('pass'),  'utf-8' )  , str.encode(dbpass[0])):
-        print('invalid password')
-        return jsonify( logon = False)
 
-    """create a JWT with the username and password"""
-    encode_JWT =jwt.encode({'username': username, 'password': dbpass[0]}, SECRET, algorithm="HS256")
-    return jsonify(jwt=encode_JWT, logon = True)
-
+#-----------------SignUp----------------------------#
 @app.route('/signup',  methods=['POST']) #endpoint
 def signup():
 
@@ -71,31 +74,64 @@ def signup():
 
     """check the DB for existing creds"""
     cur = global_db_con.cursor()
-    cur.execute("SELECT username FROM users WHERE username = users.username;")
+    cur.execute("SELECT username FROM users WHERE username = '"+fusername+"';")
     dbuname = cur.fetchone()
+    print(dbuname)
 
-    if dbuname == fusername:
+    if dbuname != None:
         print('username already exists! pick another dork')
-        return jsonify(logon =False)
+        return json_response(data={"message": fusername + "Already Exists"})
+    else:
 
-    """hash and salt the password"""
-    salted = bcrypt.hashpw( bytes(password, 'utf-8'), bcrypt.gensalt(10))
-    print(salted)
-    print(fusername)
-    """insert into DB"""
-    #cur.global_db_con.cursor()
-    unsalted=salted.decode('utf-8')
-    print(unsalted)
-    cur.execute("INSERT INTO users(username, password) VALUES ('"+fusername+"', '"+unsalted+"');")
-    cur.close()
-    global_db_con.commit()
+        """hash and salt the password"""
+        salted = bcrypt.hashpw( bytes(password, 'utf-8'), bcrypt.gensalt(10))
+        print(salted)
+        print(fusername)
+        """insert into DB"""
+        #cur.global_db_con.cursor()
+        unsalted=salted.decode('utf-8')
+        print(unsalted)
+        cur.execute("INSERT INTO users(username, password) VALUES ('"+fusername+"', '"+unsalted+"');")
+        cur.close()
+        global_db_con.commit()
 
-    """create the JWT"""
-    enc_JWT = jwt.encode({'username': fusername, 'password': unsalted}, SECRET, algorithm="HS256")
+        """create the JWT"""
+        #enc_JWT = jwt.encode({'username': fusername, 'password': unsalted}, SECRET, algorithm="HS256")
 
 
-    return jsonify(jwt=enc_JWT, logon = True)
+    return json_response(data={"message":fusername + "created successfully"})
 
+#---------------------Bookstore----------------------#
+
+@app.route('/bookstore', methods=['GET']) #endpoint
+def bookstore():
+    print("in bookstore")
+    request.args.get("jwt")
+    
+    cur = global_db_con.cursor()
+    try:
+        cur.execute(f"select lpad(book_id::varchar({str(BOOK_ID_LENGTH)}), " +
+                       f"{str(BOOK_ID_LENGTH)}, '0'), title, price from books;")
+    except:
+        print("cannot read from database")
+        return json_response(data={"message": "Error occured while reading from database."}, status=500)
+    
+    count = 0
+    message = '{"books":['
+    while 1:
+        row = cursor.fetchone()
+        if row is None:
+            break
+        else:
+            if count > 0:
+                message += ","
+            message += '{"book_id":"' + row[0] + '","title":"' + \
+                row[1] + '","price":' + str(row[2]) + "}"
+            count += 1
+    message += "]}"
+
+    print("sending silly token")
+    return json_response(data=json.loads(message))
 
 app.run(host='0.0.0.0', port=80)
 

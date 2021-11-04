@@ -31,6 +31,7 @@
 			fill:#90EE90;
 		}
 		#loginContainer{
+			visibility: visible;	
 			position: absolute;
 			left:50%;
 			top:50%;
@@ -46,7 +47,9 @@
 			border-radius: 10px;
 			font-size: 30px;
 		}
-		#books{
+
+		#signup{
+			visibility: hidden;			
 			position: absolute;
                         left:50%;
                         top:50%;
@@ -62,55 +65,24 @@
                         border-radius: 10px;
                         font-size: 30px;
 		}
-
-		#signup{
-			width: 382px;
-                        overflow: hidden;
-                        display: none;
-                        margin-top:300px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        padding: 80px;
-                        background: red;
-                        border-radius: 10px;
-
+		.bookstore{
+			display: grid;
+  			grid-template-columns: auto auto auto auto;
+  			grid-gap: 10px;
+  			background-color: #2196F3;
+  			padding: 10px;
 		}
+
+		.bookstore > div {
+  			background-color: white;
+  			border: 1px solid grey;
+  			text-align: center;
+  			font-size: 30px;
+		}
+
 	</style>
     </head>
     <body>
-        <script>
-                function check_form(){
-
-                        alert($('#username').val());
-                        alert($('#pass').val());
-
-                        $('#loginContainer').hide();
-                        $('#books').show();
-
-                        $('#cars').append('<option value="volvo">Thank you Taco</option>')
-
-
-                        return false;
-
-                        if($('#pass').val().length == 0){
-
-			$('#loginContainer').hide();
-			$('#books').show();
-			
-			$('#cars').append('<option value="volvo">Thank you Taco</option>')
-
-
-			return false;
-
-			if($('#pass').val().length == 0){
-				return false;
-			}else{
-				return true;
-			}
-		}
-		}
-	</script>
-
 	<svg viewBox="0 -50 500 500">
     		 <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
     		 <text width="1000">
@@ -118,30 +90,64 @@
         			Books from the Void!
      			 </textPath>
     		</text>
- 	 </svg>
-	    	<div id = "loginContainer">
-	             <form action="/signup" method="post">
-  				<label for="username">Username:</label><br>
-  					<input type="text" id="username" name="uname" value=" "><br>
-  				<label for="password">Password:</label><br>
-  					<input type="password" id="pass" name="pass" value=" "><br><br>
-  				<input type="submit" value="Signup" onclick="return check_form();">
-		      </form>
-		  <div id = "signup">
-                     <form action="/signup" method="post">
+	</svg>
+	    	 <div id = "loginContainer">
+                             <label for="logintext">Login</label><br><br>
                                 <label for="username">Username:</label><br>
-                                        <input type="text" id="username" name="uname" value=" "><br>
+                                        <input type="text" id="log_name" name="log_name" value=""><br>
                                 <label for="password">Password:</label><br>
-                                        <input type="password" id="pass" name="pass" value=" "><br><br>
-                                <input type="submit" value="Signup" onclick="return show_signup();">
-                      </form>
+                                        <input type="password" id="log_pass" name="log_pass" value=""><br><br>
+                                <input type="submit" value="Login" class="button" onclick = "login(); return false">
+                </div>
 
-	   	 </div>
-	    	 <div id="books" style="display:none">
-		    	<h1>Buy me</h1>
-		    		<select name="cars" id="cars">
+		</div>
+		<div class = "bookstore" id ="bookstore">
+			<label for "bookstr">Grab a Book!</label><br><br>
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+		</div>
+		  <script>
 
-  		   		 </select>
-	    	</div>
+
+                        function login(){
+                                alert("bsl");
+                                alert($('#log_name').val());
+
+                                alert($('#log_pass').val());
+
+
+                        //POST CREDZ
+
+                                $.post("/auth",{
+                                        "log_name": $("#log_name").val(),
+                                        "log_pass": $("#log_pass").val() },
+                                        function(data, text){
+                                                alert(text)
+                                                getbooks();
+
+                                        },"json");
+
+                                return false;
+
+                        }
+
+			function getbooks(){
+				$.getJSON("/bookstore", {
+					
+					function(data){
+						alert(data)
+				$('#loginContainer').hide()
+				$('#bookstore').show();
+					}
+
+			}
+			}
+
+                </script>
+
     </body>
 </html>

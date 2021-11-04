@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	 </head>
+    		<body>
+ 		<div id = "loginContainer">
+                             <label for="logintext">Login</label><br><br>
+                                <label for="username">Username:</label><br>
+                                        <input type="text" id="log_name" name="log_name" value=""><br>
+                                <label for="password">Password:</label><br>
+                                        <input type="password" id="log_pass" name="log_pass" value=""><br><br>
+                                <input type="submit" value="Login" class="button" onclick = "login();">
+                </div>
+
+		 <script>
+
+
+                	function login(){
+                    		alert("bsl");
+                    		alert($('#log_name').val());
+
+                    		alert($('#log_pass').val());
+
+
+                        //POST CREDZ
+
+                    		$.post("/auth",{
+                        		"log_name": $("#log_name").val(),
+                        		"log_pass": $("#log_pass").val() },
+                         		function(data, text){
+                                		alert(text)
+                                		console.log(text);
+                                		
+                        		},"json");
+
+                     		return false;
+
+                	}
+
+        	</script>
+
+ 	</body>
+</html>
+

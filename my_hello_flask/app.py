@@ -131,5 +131,31 @@ def bookstore():
     print("sending silly token")
     return json_response(data=json.loads(message))
 
+
+#-----------------Cart--------------------------#
+@app.route('/showCart', methods=['GET']) #endpoint
+def showCart():
+    incoming=request.args.get("jwt")
+    cur = global_db_con.cursor()
+    try:
+        cur.execute("select * from purchases;")
+        booklist=cur.fetchall()
+        cur.close()
+    except:
+        print("cannot read from database")
+        return json_response(data={"message": "Error occured while reading from database."}, status=500)
+
+    count=0
+    message = '{"books":['
+    for b in booklist:
+        if b[0] < len(booklist) :
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},'
+        else:
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}'
+    message += "]}"
+    print(message)
+    print("sending silly token")
+    return json_response(data=json.loads(message))
+
 app.run(host='0.0.0.0', port=80)
 

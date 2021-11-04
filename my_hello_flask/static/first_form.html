@@ -111,17 +111,17 @@
 		</div>
 		<div class = "bookstore" id ="bookstore">
 			<label for "bookstr">Grab a Book!</label><br><br>
-			<div>1</div>
-			<div>2</div>
-			<div>3</div>
-			<div>4</div>
-			<div>5</div>
-			<div>6</div>
+			<div id = "book1">1</div>
+			<div id = "book2">2</div>
+			<div id = "book3">3</div>
+			<div id = "book4">4</div>
+			<div id = "book5">5</div>
+			<button id ="cart" onclick ="showCart()">go to cart</button
 		</div>
 		  <script>
 
 			
-
+			$('#bookstore').hide();
                         function login(){
                                 alert("bsl");
                                 alert($('#log_name').val());
@@ -147,16 +147,33 @@
 
 			function getbooks(){
 				$('#loginContainer').hide();
-
-				$.getJSON("/bookstore",{ "jwt":token.jwt},
-		      			  function(data){
-					  	alert(data)
-						  
+				 
+				$.get("/bookstore",{ "jwt":token.jwt}, 
+					function(data){
+					console.log(data);
+					for(var i = 0; i < data.data.books.length; i++){
+                                              $("#book"+(i+1)).append("<tr><td>" + data.data.books[i].title +
+						      "</td></tr><tr><td>" + data.data.books[i].price + "</td></tr>");
+                                                }
 						$('#bookstore').show();
-					},"json");
+
+					//$('#bookstore').html(JSON.stringify(json));
+		}).fail(function( jqxhr, textStatus, error ) {
+    				var err = textStatus + ", " + error;
+    			console.log( "Request Failed: " + err );
+		});
+		}
+		
+			function showCart(){
+				$('#bookstore').hide();
+
+
+
+
+			}
 
 		
-			}
+			
 
                 </script>
 

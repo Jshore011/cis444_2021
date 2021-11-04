@@ -66,11 +66,14 @@
                         font-size: 30px;
 		}
 		.bookstore{
+			
 			display: grid;
   			grid-template-columns: auto auto auto auto;
   			grid-gap: 10px;
-  			background-color: #2196F3;
+			align-content: space-evenly;
+  			background-color: #90EE90;
   			padding: 10px;
+			text-align: center;
 		}
 
 		.bookstore > div {
@@ -78,6 +81,11 @@
   			border: 1px solid grey;
   			text-align: center;
   			font-size: 30px;
+			border-radius: 10px;
+		}
+		.bookstr{
+			text-align: center;
+			font-size: 30px;
 		}
 
 	</style>
@@ -112,6 +120,7 @@
 		</div>
 		  <script>
 
+			
 
                         function login(){
                                 alert("bsl");
@@ -126,7 +135,8 @@
                                         "log_name": $("#log_name").val(),
                                         "log_pass": $("#log_pass").val() },
                                         function(data, text){
-                                                alert(text)
+						token = data.data;
+                                                alert(data)
                                                 getbooks();
 
                                         },"json");
@@ -136,15 +146,16 @@
                         }
 
 			function getbooks(){
-				$.getJSON("/bookstore", {
-					
-					function(data){
-						alert(data)
-				$('#loginContainer').hide()
-				$('#bookstore').show();
-					}
+				$('#loginContainer').hide();
 
-			}
+				$.getJSON("/bookstore",{ "jwt":token.jwt},
+		      			  function(data){
+					  	alert(data)
+						  
+						$('#bookstore').show();
+					},"json");
+
+		
 			}
 
                 </script>

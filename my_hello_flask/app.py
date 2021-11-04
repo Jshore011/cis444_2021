@@ -5,6 +5,7 @@ import jwt
 import datetime
 import bcrypt
 import db_con
+import json
 
 from db_con import get_db_instance, get_db
 
@@ -106,30 +107,27 @@ def signup():
 @app.route('/bookstore', methods=['GET']) #endpoint
 def bookstore():
     print("in bookstore")
-    request.args.get("jwt")
-    
+    incoming=request.args.get("jwt")
+    print(incoming)
+
     cur = global_db_con.cursor()
     try:
-        cur.execute(f"select lpad(book_id::varchar({str(BOOK_ID_LENGTH)}), " +
-                       f"{str(BOOK_ID_LENGTH)}, '0'), title, price from books;")
+        cur.execute("select * from books;")
+        booklist=cur.fetchall()
+        cur.close()
     except:
         print("cannot read from database")
         return json_response(data={"message": "Error occured while reading from database."}, status=500)
     
-    count = 0
+    count=0
     message = '{"books":['
-    while 1:
-        row = cursor.fetchone()
-        if row is None:
-            break
+    for b in booklist:
+        if b[0] < len(booklist) :
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},'
         else:
-            if count > 0:
-                message += ","
-            message += '{"book_id":"' + row[0] + '","title":"' + \
-                row[1] + '","price":' + str(row[2]) + "}"
-            count += 1
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}'
     message += "]}"
-
+    print(message)
     print("sending silly token")
     return json_response(data=json.loads(message))
 

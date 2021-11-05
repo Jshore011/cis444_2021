@@ -139,16 +139,16 @@ def showCart():
     cur = global_db_con.cursor()
     try:
         cur.execute("select * from purchases;")
-        booklist=cur.fetchall()
+        purchases=cur.fetchall()
         cur.close()
     except:
         print("cannot read from database")
         return json_response(data={"message": "Error occured while reading from database."}, status=500)
 
     count=0
-    message = '{"books":['
-    for b in booklist:
-        if b[0] < len(booklist) :
+    message = '{"purchases":['
+    for b in purchases:
+        if b[0] < len(purchases) :
             message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},'
         else:
             message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}'
@@ -156,6 +156,20 @@ def showCart():
     print(message)
     print("sending silly token")
     return json_response(data=json.loads(message))
+
+
+#--------------purchase--------------------#
+@app.route('/purchase', methods=['POST']) #endpoint
+def purchase():
+    title = request.form["title"]
+    print(title)
+    cur = global_db_con.cursor()
+    cur.execute("INSERT INTO purchases (title, price) SELECT title, price FROM books WHERE title = '" + title + "';")
+    cur.close()
+    global_db_con.commit()
+
+    print("Added book to cart.")
+    return json_response(data={"message":str(title) +" successfully added."})
 
 app.run(host='0.0.0.0', port=80)
 

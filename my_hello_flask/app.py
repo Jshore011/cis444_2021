@@ -145,13 +145,15 @@ def showCart():
         print("cannot read from database")
         return json_response(data={"message": "Error occured while reading from database."}, status=500)
 
-    count=0
+    count=1
     message = '{"purchases":['
     for b in purchases:
-        if b[0] < len(purchases) :
-            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},'
+       
+        if count < len(purchases) :
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) +'"},'
+            count=count+1
         else:
-            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}'
+            message += '{"title":"'+str(b[1]) +'","price":"' + str(b[2]) +'"}'
     message += "]}"
     print(message)
     print("sending silly token")

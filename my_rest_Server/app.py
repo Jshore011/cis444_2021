@@ -25,7 +25,7 @@ app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
 
-#g is flask for a global var storage 
+#g is flask for a global var storage
 def init_new_env():
     if 'db' not in g:
         g.db = get_db()
@@ -41,7 +41,6 @@ def init_new_env():
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
 def index():
-    print("made contact")
     return redirect('/static/index.html')
 
 
@@ -66,7 +65,6 @@ def exec_secure_proc(proc_name):
         return json_response(status_=500 ,data=ERROR_MSG)
 
     return resp
-
 
 
 @app.route("/open_api/<proc_name>",methods=['GET', 'POST'])

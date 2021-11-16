@@ -4,7 +4,9 @@ from flask import request, redirect, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 
 from tools.logging import logger
+
 from tools.get_aws_secrets import get_secrets
+
 
 def token_required(f):
     @wraps(f)
@@ -13,29 +15,29 @@ def token_required(f):
         auth_headers = request.headers.get('Authorization', '').split(':')
 
         invalid_msg = {
-                'message': 'Invalid token. Registration and/or authentication required',
-                'authenticated': False
-                }
+            'message': 'Invalid token. Registeration and / or authentication required',
+            'authenticated': False
+        }
         expired_msg = {
-                'message': 'Expired token. Reauthentication required.',
-                'authenticated' : False
-                }
+            'message': 'Expired token. Reauthentication required.',
+            'authenticated': False
+        }
 
-        if len(auth_handlers) != 2:
-            return json_response(status_=401, message = invalid_msg)
+        if len(auth_headers) != 2:
+            return json_response(status_=401 ,message=invalid_msg)
 
         try:
             token = auth_headers[1]
             logger.debug("Got token")
-            data = jwt.decode(token, secrets['JWT'], algorithms = ['HS256'])
+            data = jwt.decode(token,  secrets['JWT'], algorithms=["HS256"])
             #set global jwt_data
             g.jwt_data = data
             return f( *args, **kwargs)
         except jwt.ExpiredSignatureError:
-            #401 is unauthorized HTTP status code
-            return json_response(status_=401, message=expired_msg)
+             return json_response(status_=401 ,message=expired_msg) # 401 is Unauthorized HTTP status code
         except (jwt.InvalidTokenError, Exception) as e:
             logger.debug(e)
-            return json_response(status_=401, message=expired_msg)
+            return json_response(status_=401 ,message=expired_msg)
 
-        return _verify
+    return _verify
+

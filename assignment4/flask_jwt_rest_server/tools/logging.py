@@ -9,4 +9,3 @@ formatter = logging.Formatter('%(asctime)s - %(name)s %(funcName)s():%(lineno)i:
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-

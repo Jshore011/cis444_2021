@@ -71,6 +71,7 @@ def exec_secure_proc(proc_name):
 
 @app.route("/open_api/<proc_name>",methods=['GET', 'POST'])
 def exec_proc(proc_name):
+    print("made it to open api")
     logger.debug(f"Call to {proc_name}")
 
     #setup the env

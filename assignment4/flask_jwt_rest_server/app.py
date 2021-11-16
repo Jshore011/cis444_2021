@@ -11,7 +11,7 @@ import traceback
 from db_con import get_db_instance, get_db
 
 from tools.token_required import token_required
-
+from tools.get_aws_secrets import get_secrets
 
 from tools.logging import logger
 
@@ -30,8 +30,8 @@ def init_new_env():
     if 'db' not in g:
         g.db = get_db()
 
+
     if DEBUG == False:
-        from tools.get_aws_secrets import get_secrets
         if 'secrets' not in g:
             g.secrets = get_secrets()
     else:

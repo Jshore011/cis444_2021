@@ -15,6 +15,7 @@
 					console.log(data.token);
 					//Set global JWT
 					jwt = data.token;
+
 					//make secure call with the jwt
 					get_books();
 				}, "json").fail( function(response) {

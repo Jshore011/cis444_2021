@@ -4,11 +4,248 @@
 	     <script src="https://code.jquery.com/jquery-3.6.0.js" 
 		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	     <script src="/static/cis444.js"></script>
+<style>
+	        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Rye&display=swap');
+                body{
+                        background-image: url(https://cdn.wallpapersafari.com/69/49/CfVuUc.jpg);
+                        background-repeat: no-repeat;
+                        background-attachment:fixed;
+                        background-position: cover;
+                        margin: 0;
+                        padding: 0;
+                        font-family: 'Arial';
+                        background-color: black;
+                        text-align: center;
+                        font-family: 'Creepster', cursive;
+                        text-shadow: 2px 2px  grey;
+                        font-size: 50px;
+                }
+                svg{
+                        display: center;
+                        margin-left:auto;
+                        margin-right: auto;
+                        line-size: 5;
+                }
+                text{
+                        fill:#90EE90;
+                }
+                #loginContainer{
+                        visibility: visible;
+                        position: absolute;
+                        left:50%;
+                        top:50%;
+                        transform:translate(-50%, 0%);
+                        width:350px;
+                        overflow: hidden;
+                        display: center top;
+                        margin-top:auto;
+                        margin-left: auto;
+                        margin-right: auto;
+                        background: white;
+                        padding: 80px;
+                        border-radius: 10px;
+                        font-size: 30px;
+                }
+                label{
+                        font-size: 50px;
+                }
+ 		#signup{
+                        visibility: hidden;
+                        position: absolute;
+                        left:50%;
+                        top:50%;
+                        transform:translate(-50%, -10%);
+                        width:350px;
+                        overflow: hidden;
+                        display: center top;
+                        margin-top:auto;
+                        margin-left: auto;
+                        margin-right: auto;
+                        background: white;
+                        padding: 80px;
+                        border-radius: 10px;
+                        font-size: 30px;
+                }
+                .bookstore {
+                        position: absolute;
+                        left:50%;
+                        top:50%;
+                        transform:translate(-50%, 0%);
+                        overflow: hidden;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-top:auto;
+                        margin-left: auto;
+                        display: grid;
+                        grid-gap: 10px;
+                        align-content: space-evenly;
+                        background-color: #90EE90;
+                        padding: 10px;
+                        text-align: center;
+                        border-radius: 12px;
+
+                }
+                .bookstore *{
+                        justify-content: center;
+                }
+		#bookstore > div {
+                        background-color: white;
+                        border: 1px solid grey;
+                        text-align: center;
+                        font-size: 30px;
+                        border-radius: 10px;
+                }
+                .button{
+                        font-family: 'Arial';
+                        font-family: 'Creepster', cursive;
+                        text-align: center;
+                        font-size: 30px;
+                        color: white;
+                        background-color: black;
+                        border-radius: 12px;
+
+                }
+
+                td{
+                        text-align: center;
+                }
+
+                #button:hover {background-color: grey}
+
+                #book1{
+                        font-family: 'Arial';
+                        font-family: 'Creepster', cursive;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        color: red;
+                        background-color: black;
+                        width: 500px;
+                        justify-content: center;
+                }
+                #book2{
+                        font-family: 'Arial';
+                        font-family: 'Creepster', cursive;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        color: red;
+                        background-color: black;
+                        width: 500px;
+
+                }
+		#book3{
+                        font-family: 'Arial';
+                        font-family: 'Creepster', cursive;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        color: red;
+                        background-color: black;
+                        width: 500px;
+                }
+                 #book4{
+                        font-family: 'Arial';
+                        font-family: 'Creepster', cursive;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        color: red;
+                        background-color: black;
+                        width: 500px;
+                }
+                #book5{
+                        font-family: 'Arial';
+                        font-family: 'Creepster', cursive;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        color: red;
+                        background-color: black;
+                        width: 500px;
+
+                }
+
+
+
+                #table-cart{
+                        text-align:center;
+                        position: absolute;
+                        left:50%;
+                        top:50%;
+                        transform:translate(-50%, 0%);
+                        width:550px;
+                        overflow: hidden;
+                        display: center top;
+                        margin-top:auto;
+                        margin-left: auto;
+                        margin-right: auto;
+                        background: white;
+                        padding: 80px;
+                        border-radius: 10px;
+                        font-size: 30px;
+
+                }
+                #table-cart #price{
+                        text-align:right;
+                }
+
+</style>
     </head>
     <body>
+	<svg viewBox="0 -50 500 500">
+                 <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
+                 <text width="1000">
+                        <textPath xlink:href="#curve">
+                                Books from the Void!
+                         </textPath>
+                </text>
+        </svg>
+ 	<div id = "loginContainer">
+                <label for="logintext">Login</label><br><br>
+                       <label for="username">Username:</label><br>
+                             <input type="text" id="username" name="username" value=""><br>
+                                <label for="password">Password:</label><br>
+                                       <input type="password" id="password" name="password" value=""><br><br>
+                                       <input type="submit" value="Login" class="button" onclick = "login(); return false"><br>
+                                       <label for"or" value="or"><br>
+                                <input type="submit" value="Sign Up" class="button" onclick= "signup(); return false">
+        </div>
+ 	</div>
+                <div class = "bookstore" id ="bookstore">
+                        <h1 for "bookstr">Grab a Book!</h1><br><br>
+                        <button id = "book1" onclick="buybook('The Haunting of Hill House')"><img src="https://images-na.ssl-images-amazon.com/images/I/411Em7u9LCL._SX277_BO1,204,203,200_.jpg"></button>
+                        <button id = "book2" onclick="buybook('It')"><img src ="https://images-na.ssl-images-amazon.com/images/I/4117PWF91KL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"></button>
+                        <button id = "book3" onclick="buybook('The Exorcist')"><img src="https://images-na.ssl-images-amazon.com/images/I/41lfCsCLlzL._SX306_BO1,204,203,200_.jpg"></button>
+                        <button id = "book4" onclick="buybook('The Shining')"><img src="https://images-na.ssl-images-amazon.com/images/I/41v+vwR-UPL._SX322_BO1,204,203,200_.jpg"></button>
+                        <button id = "book5" onclick="buybook('Dracula')"><img src="https://images-na.ssl-images-amazon.com/images/I/316QKUeAiUS._SX346_BO1,204,203,200_.jpg"></button>
+                        <button id ="cartbtn" onclick ="showCart()">go to cart</button>
+                </div>
+
+                <div id= "table-cart">
+
+                        <table id="cart">
+                                <tbody>
+                                        <h1> Your Books</h1><br><br>
+
+                                        <tr>
+                                                <td>Title</td>
+                                                <td></td>
+                                                <td id=price>Price</td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                </tbody>
+                        </table>
+                </div>
 
 	<script>
-		function send_form(){
+
+		$('#table-cart').hide();
+                $('#bookstore').hide();
+
+		function login(){
 			$.post("/open_api/login", { "username":$('#username').val(), "password":$('#password').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
@@ -27,21 +264,24 @@
 		}
 
 		function get_books(){
+			$('#loginContainer').hide();
+
 			 //make secure call with the jwt
-                         secure_get_with_token("/secure_api/get_books", function(data){console.log("got books"); console.log(data)},
+                         secure_get_with_token("/secure_api/get_books", 
+				 function(data){
+				 console.log("got books"); 
+					 console.log(data);
+					 for(var i = 0; i < data.data.books.length; i++){
+                                              $("#book"+(i+1)).append("<tr><td>" + data.data.books[i].title +
+                                                      "</td></tr><tr><td>" + data.data.books[i].price + "</td></tr>");
+                                                }
+                                                $('#bookstore').show();
+
+				 },
                                                 function(err){ console.log(err) });
 		}
 
 	</script>
-            <div id="login">
-	    	<form >
-  			<label for="username">Username:</label><br>
-  				<input type="text" id="username" name="username" value=" "><br>
-  			<label for="password">Password:</label><br>
-  				<input type="password" id="password" name="password" value=" "><br><br>
-  			<input type="submit" value="Signup" onclick="return send_form();">
-		</form>
-	    </div>
     </body>
 </html>
 

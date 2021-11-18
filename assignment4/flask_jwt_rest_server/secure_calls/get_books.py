@@ -18,15 +18,15 @@ def handle_request():
         return json_response(data={"message": "Error occured while reading from database."}, status=500)
 
     count=0
-    books = '{"books":['
+    message = '{"books":['
     for b in booklist:
         if b[0] < len(booklist) :
-            books += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},'
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},'
         else:
-            books += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}'
-    books += "]}"
-    #print(message)
-    print("sending silly token")
+            message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}'
+    message += "]}"
+    print(message)
+    #print("sending silly token")
     
-    return json_response( token = create_token(  g.jwt_data ) , books = {})
+    return json_response( token = create_token(  g.jwt_data ) , data = message)
 

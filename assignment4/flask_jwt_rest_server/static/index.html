@@ -289,14 +289,16 @@
                                  function(data){
                                  console.log("got cart");
                                          console.log(data);
+					 console.log(data.purchases);
+					 console.log(data.data.purchases);
                                          table = document.getElementById("cart");
-					 console.log(data.length);
-                                        for(var i = 0; i < data.data.length; i++){
-				         	console.log("inside loop");
+					 
+                                        for(var i = 0; i < Object.keys(data).length; i++){
+				         	console.log(data.data.purchase);
                                                row = table.insertRow(i+1);
                                                cell1 = row.insertCell(0);
                                                cell2= row.insertCell(1);
-                                               cell1.innerHTML = data.data.purchases[i+1].title;
+                                               cell1.innerHTML = data.data.purchases[i].title;
                                                cell2.innerHTML = data.data.purchases[i].price;
                                         }
                                                 $('#table-cart').show();

@@ -3,6 +3,7 @@ from flask_json import FlaskJSON, JsonError, json_response, as_json
 from tools.token_tools import create_token
 
 from tools.logging import logger
+import json
 
 def handle_request():
     logger.debug("Get Books Handle Request")
@@ -28,5 +29,4 @@ def handle_request():
     print(message)
     #print("sending silly token")
     
-    return json_response( token = create_token(  g.jwt_data ) , data = message)
-
+    return json_response( token = create_token(  g.jwt_data ) , data = json.loads(message))

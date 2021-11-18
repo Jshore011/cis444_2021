@@ -271,7 +271,7 @@
 				 function(data){
 				 console.log("got books"); 
 					 console.log(data);
-					 for(var i = 0; i < data.data.books.length; i++){
+					 for(var i = 0; i < data.length; i++){
                                               $("#book"+(i+1)).append("<tr><td>" + data.data.books[i].title +
                                                       "</td></tr><tr><td>" + data.data.books[i].price + "</td></tr>");
                                                 }

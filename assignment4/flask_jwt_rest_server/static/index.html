@@ -281,6 +281,37 @@
                                                 function(err){ console.log(err) });
 		}
 
+		 function showCart(){
+                        $('#bookstore').hide();
+
+                         //make secure call with the jwt
+                         secure_get_with_token("/secure_api/get_cart",
+                                 function(data){
+                                 console.log("got cart");
+                                         console.log(data);
+                                         table = document.getElementById("cart");
+					 console.log(data.length);
+                                        for(var i = 0; i < data.data.length; i++){
+				         	console.log("inside loop");
+                                               row = table.insertRow(i+1);
+                                               cell1 = row.insertCell(0);
+                                               cell2= row.insertCell(1);
+                                               cell1.innerHTML = data.data.purchases[i+1].title;
+                                               cell2.innerHTML = data.data.purchases[i].price;
+                                        }
+                                                $('#table-cart').show();
+
+
+                                 },
+                                                function(err){ console.log(err) });
+                }
+
+
+		function buybook(title){
+                                 $.post("/secure_api/make_purchase",{ "title":title},"json");
+
+                        }
+
 	</script>
     </body>
 </html>

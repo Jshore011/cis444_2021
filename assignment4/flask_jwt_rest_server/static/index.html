@@ -265,13 +265,16 @@
 
 		function get_books(){
 			$('#loginContainer').hide();
-
+			console.log("inside get_books")
 			 //make secure call with the jwt
                          secure_get_with_token("/secure_api/get_books", 
 				 function(data){
+					 console.log("got data")
 				 console.log("got books"); 
 					 console.log(data);
 					 for(var i = 0; i < data.length; i++){
+						 console.log("inside loop")
+						 
                                               $("#book"+(i+1)).append("<tr><td>" + data.data.books[i].title +
                                                       "</td></tr><tr><td>" + data.data.books[i].price + "</td></tr>");
                                                 }
@@ -310,7 +313,14 @@
 
 
 		function buybook(title){
-                                 $.post("/secure_api/make_purchase",{ "title":title},"json");
+
+			 //make secure call with the jwt
+                        secure_get_with_data("/secure_api/make_purchase", {"title" : title} , 
+				function(data){
+					console.log("got books"); 
+					console.log(data)},
+
+                                                function(err){ console.log(err) });
 
                         }
 

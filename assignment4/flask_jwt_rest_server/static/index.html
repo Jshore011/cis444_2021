@@ -292,12 +292,11 @@
                                  function(data){
                                  console.log("got cart");
                                          console.log(data);
-					 console.log(data.purchases);
 					 console.log(data.data.purchases);
                                          table = document.getElementById("cart");
-					 
-                                        for(var i = 0; i < Object.keys(data).length; i++){
-				         	console.log(data.data.purchase);
+			
+                                        for(var i = 0; i < Object.keys(data.data.purchases).length; i++){
+				         	console.log("inside loop");
                                                row = table.insertRow(i+1);
                                                cell1 = row.insertCell(0);
                                                cell2= row.insertCell(1);
@@ -317,7 +316,7 @@
 			 //make secure call with the jwt
                         secure_get_with_data("/secure_api/make_purchase", {"title" : title} , 
 				function(data){
-					console.log("got books"); 
+					console.log("purchased books"); 
 					console.log(data)},
 
                                                 function(err){ console.log(err) });

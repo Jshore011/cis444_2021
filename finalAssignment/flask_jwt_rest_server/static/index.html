@@ -108,19 +108,17 @@
 </style>
     <body>
 	    <div id = "loginimg"></div>
-     <div class="login">
+     <div class="login" id = login>
 	     <div>
-                 <label for="logintext">Login</label><br><br>
-                       <label for="username">Username:</label><br>
-                             <input type="text" id="username" name="username" value=""><br>
+                 <label for="logintext">Welcome Back, Login!</label><br><br>
+                       <label for="email">Email:</label><br>
+                             <input type="text" id="loginEmail" name="loginEmail" value=""><br>
                                 <label for="password">Password:</label><br>
-                                       <input type="password" id="password" name="password" value=""><br><br>
+                                       <input type="password" id="loginPassword" name="loginPassword" value=""><br><br>
                                        <input type="submit" value="Login" class="button" onclick = "login(); return false"><br>
-                                       <label for"or" value="or"><br>
-                                <input type="submit" value="Sign Up" class="button" onclick= "signup(); return false">
 	     </div>
         </div>
-	    <div class = "signup">
+	    <div class = "signup" id = signup>
 		    <div>
 			<label for="signupForm">Signup!</label><br><br>
                        		<label for="email">E-mail:</label><br>
@@ -141,6 +139,11 @@
 		    </div>
 	    </div>
 	    <div>
+		    <div class =userdash id=dashboard>
+
+		    </div>
+	    </div>
+	    <div>
 		<ul class="sidenav">
   		<li onclick="goHome()"><a class="active" href="#home">PetMe+</a></li>
   		<li id = "PL2" onclick="showPetLog()"><a href="#pet-log">Pet Log</a></li>
@@ -152,23 +155,20 @@
   		<li onclick="goToChewy()"><a href="#chewy">Chewy.com</a></li>
   		<li style="float:right"><a href="#signout">Sign out</a></li>
   		<li onclick="changeSettings()" style="float:right"><a href="#settings">Settings</a></li>
+		<li onclick="$('#login').show();" style="float:right"><a href="#login">Login</a></li>
+		<li onclick="$('#signup').show();" style="float:right"><a href="#signup">Sign up</a></li>
+
 		</ul>
-          </div>
-
-
-            <button id="buybook" onclick="buy_book(1234)" style="display:none" >Buy Book</button>
+   	</div>
     </body>
 	<script>
-		$('#signup').show();
+
 		$('#login').hide();
-
-
-
+		$('#signup').hide();
+		$('#dashboard').hide();
 		//function that allows an existing user to login
                function login(){
-		       $('#login').show();
-		       $('#signup').hide();
-			$.post("/open_api/login", { "username":$('#username').val(), "password":$('#password').val()},
+			$.post("/open_api/login", { "loginEmail":$('#loginEmail').val(), "loginPassword":$('#loginPassword').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
@@ -176,7 +176,7 @@
 					jwt = data.token;
 
 					//make secure call with the jwt
-					get_books();
+					get_dash();
 				}, "json").fail( function(response) {
 					//this gets called if the server throws an error
 					console.log("error");
@@ -187,8 +187,6 @@
 
 		//function that sign's up a new user
 		function signup(){
- 	               $('#signup').show();
-                       $('#login').hide();
                         $.post("/open_api/signup", { "signupEmail":$('#signupEmail').val(), "signupPassword":$('#signupPassword').val(), "newUserName":$('#newUserName').val(), "signupCity":$('#signupCity').val(), "signupState":$('#signupState').val()},
                                 function(data, textStatus) {
                                         //this gets called when browser receives response from server
@@ -197,7 +195,7 @@
                                         jwt = data.token;
 
                                         //make secure call with the jwt
-                                        get_books();
+                                        get_dash();
                                 }, "json").fail( function(response) {
                                         //this gets called if the server throws an error
                                         console.log("error");
@@ -205,16 +203,26 @@
                                 });
                         return false;
                 }
-
-		function get_books(){
+		
+		//function that displays the user profile upon successful login
+		function get_dash(){
+			$('#login').hide();
+                	$('#signup').hide();
+		
 			 //make secure call with the jwt
-			secure_get_with_token("/secure_api/get_books", {} , function(data){
-					console.log("got books"); 
+			secure_get_with_token("/secure_api/get_dash", {} , function(data){
+					console.log("got user dashboard"); 
 					console.log(data); 
-					$('#buybook').show();
+					$('#dashboard').show();
 					},
                                                 function(err){ console.log(err) });
 		}
+
+		//function that brings user to chewy.com on click
+		function goToChewy(){
+    			window.open('https://www.chewy.com/');
+  		}
+
                 function buy_book(book_id){
                          //make secure call with the jwt
                         secure_get_with_token("/secure_api/get_books", {"book_id" : book_id} , function(data){console.log("got books"); console.log(data)},

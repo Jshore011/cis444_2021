@@ -8,9 +8,9 @@ def handle_request():
     logger.debug("Login Handle Request")
     #use data here to auth the user
 
-    password_from_user_form = request.form['password']
+    password_from_user_form = request.form['loginPassword']
     user = {
-            "sub" : request.form['firstname'] #sub is used by pyJwt as the owner of the token
+            "sub" : request.form['loginEmail'] #sub is used by pyJwt as the owner of the token
             }
     if not user:
         return json_response(status_=401, message = 'Invalid credentials', authenticated =  False )

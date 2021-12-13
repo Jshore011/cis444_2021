@@ -105,6 +105,86 @@
 
     }
 
+    .usersettings{
+    position: absolute;
+    left:30%;
+    top:20%;
+    width:600px;
+    height: 500px;
+    overflow: hidden;
+    display: center;
+    margin-top:auto;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-color: slategray;
+    border-style: groove;
+    padding: 80px;
+    border-radius: 30px;
+    font-size: 30px;
+    text-align: -webkit-left;
+    font-family: "Veranda", Veranda, sans-serif;
+  }
+    #imageUpload
+    {
+      display: none;
+    }
+
+    #profileImage
+    {
+      cursor: pointer;
+    }
+
+    #output {
+      margin-right: 500px;
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      border-color: #6EC5B8;
+      border-style: groove;
+    }
+
+    #imageUpload
+    {
+      display: none;
+    }
+
+    #profileImage
+    {
+      cursor: pointer;
+    }
+
+    #profile-container {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+    }
+
+    #profile-container img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .form-control{
+      vertical-align: center;
+      margin-top: 75px;
+      margin-left: 15px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border-color: #6EC5B8;
+    }
+
 </style>
     <body>
 	    <div id = "loginimg"></div>
@@ -144,6 +224,38 @@
 		    </div>
 	    </div>
 	    <div>
+  		<div class = usersettings id="edituser">
+    		<div >
+      		   <div>	
+        		<div class = edHead >
+          			<label id = setting-header for="settings">Settings</label><br><br>
+        		</div>
+        	   	    <div class = rightCol>
+          			<input type="file" accept="image/*" onchange="loadFile(event)">
+          			<img id="useroutput"/><br><br>
+        		    </div>
+      			</div>
+    		  </div>
+    		<div class = leftcol>
+                  <div class = userInfo>
+                      <form >
+          		<label id=addNameuser for="Select">Name:</label>
+          		<input type="text" id="adduserName" name="Uname"><br><br>
+          		<label id=addAgeUser for="Select">Age:</label>
+          		<input type="text" id="adduserAge" name="UAge"><br><br>
+        	    </form>
+      		</div>
+    	     </div>
+    	<div>
+      	<div class = editfoot>
+        <div class = save-edit-button><input type="submit" value="save" class="button" id = saveuser onclick= "submitForm(); return false"></div>
+        <div class = add-edit-button><input type="submit" value="add" class="button" id = adduser onclick= "submitForm(); return false"></div>
+        <div class = remove-edit-button><input type="submit" value="delete" class="button" id = removeuser onclick= "submitForm(); return false"></div>
+      </div>
+    </div>
+  </div>
+</div>
+	    <div>
 		<ul class="sidenav">
   		<li onclick="goHome()"><a class="active" href="#home">PetMe+</a></li>
   		<li id = "PL2" onclick="showPetLog()"><a href="#pet-log">Pet Log</a></li>
@@ -154,7 +266,7 @@
   		<li onclick="findAgroomer()"><a href="#groomer">Find A Groomer</a></li>
   		<li onclick="goToChewy()"><a href="#chewy">Chewy.com</a></li>
   		<li style="float:right"><a href="#signout">Sign out</a></li>
-  		<li onclick="changeSettings()" style="float:right"><a href="#settings">Settings</a></li>
+  		<li onclick="$('#edituser').show();" style="float:right"><a href="#settings">Settings</a></li>
 		<li onclick="$('#login').show();" style="float:right"><a href="#login">Login</a></li>
 		<li onclick="$('#signup').show();" style="float:right"><a href="#signup">Sign up</a></li>
 
@@ -166,6 +278,7 @@
 		$('#login').hide();
 		$('#signup').hide();
 		$('#dashboard').hide();
+		$('#edituser').hide()
 		//function that allows an existing user to login
                function login(){
 			$.post("/open_api/login", { "loginEmail":$('#loginEmail').val(), "loginPassword":$('#loginPassword').val()},

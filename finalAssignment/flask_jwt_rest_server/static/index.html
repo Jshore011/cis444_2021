@@ -5,16 +5,176 @@
 		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	     <script src="/static/cis444.js"></script>
     </head>
-    <body>
+<style>
+ body {
+      margin:0;
+      background-color: white;
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: xx-large;
+    }
+ .login{
+	 position: absolute;
+      left:30%;
+      top:20%;
+      width:500px;
+      overflow: hidden;
+      display: center;
+      margin-top:auto;
+      margin-left: auto;
+      margin-right: auto;
+      background: white;
+      border-color: slategray;
+      border-style: groove;
+      padding: 80px;
+      border-radius: 30px;
+      font-size: 30px;
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: xx-large;
+      color: #6EC5B8;
+    }
+ .signup{
+	 position: absolute;
+      left:30%;
+      top:20%;
+      width:500px;
+      overflow: hidden;
+      display: center;
+      margin-top:auto;
+      margin-left: auto;
+      margin-right: auto;
+      background: white;
+      border-color: slategray;
+      border-style: groove;
+      padding: 80px;
+      border-radius: 30px;
+      font-size: 30px;
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: xx-large;
+      color: #6EC5B8;
+    }
+  .button{
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: larger;
+      width:120px;
+      height:50px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      display: block;
+      transition-duration: 0.4s;
+      background-color: #6EC5B8;
+    }
+    .button:hover{
+      background-color: #6EC5B8;
+      color:white;
+    }
 
+     ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: medium;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #6EC5B8;
+    }
+
+    .active {
+      background-color: #6EC5B8;
+    }
+    #loginimg{
+	background-image: url('https://startuppup.com/wp-content/uploads/2021/02/dog-group-3.jpg');
+
+    }
+
+</style>
+    <body>
+	    <div id = "loginimg"></div>
+     <div class="login">
+	     <div>
+                 <label for="logintext">Login</label><br><br>
+                       <label for="username">Username:</label><br>
+                             <input type="text" id="username" name="username" value=""><br>
+                                <label for="password">Password:</label><br>
+                                       <input type="password" id="password" name="password" value=""><br><br>
+                                       <input type="submit" value="Login" class="button" onclick = "login(); return false"><br>
+                                       <label for"or" value="or"><br>
+                                <input type="submit" value="Sign Up" class="button" onclick= "signup(); return false">
+	     </div>
+        </div>
+	    <div class = "signup">
+		    <div>
+			<label for="signupForm">Signup!</label><br><br>
+                       		<label for="email">E-mail:</label><br>
+                             		<input type="text" id="signupEmail" name="signupEmail" value=""><br>
+                                <label for="password">Password:</label><br>
+                                       <input type="password" id="signupPassword" name="signupPassword" value=""><br>
+				<label for="name">Name:</label><br>
+				<input type="text" id="newUserName" name="newUserName" value=""><br>
+				<label for="city">City:</label><br>
+                                       <input type="text" id="signupCity" name="signupCity" value=""><br>
+				<label for="state">State:</label><br>
+                                       <input type="text" id="signupState" name="signupState" value=""><br><br>
+                                       <input type="submit" value="Sign Up" class="button" onclick= "signup(); return false">
+				<label for"or" value="or"><br>
+				       <input type="submit" value="Login" class="button" onclick = "login(); return false"><br>
+
+
+		    </div>
+	    </div>
+	    <div>
+		<ul class="sidenav">
+  		<li onclick="goHome()"><a class="active" href="#home">PetMe+</a></li>
+  		<li id = "PL2" onclick="showPetLog()"><a href="#pet-log">Pet Log</a></li>
+  		<li id = "gallery" onclick="showGallery()"><a href="#photos">Photos</a></li>
+  		<li id = "pet-report2" onclick="displayReport()"><a href="#report">Pet Report</a></li>
+  		<li id = editp onclick="changePets()"><a href="#editpet">Edit Pets</a></li>
+  		<li><a href="#park">Find A Park</a></li>
+  		<li onclick="findAgroomer()"><a href="#groomer">Find A Groomer</a></li>
+  		<li onclick="goToChewy()"><a href="#chewy">Chewy.com</a></li>
+  		<li style="float:right"><a href="#signout">Sign out</a></li>
+  		<li onclick="changeSettings()" style="float:right"><a href="#settings">Settings</a></li>
+		</ul>
+          </div>
+
+
+            <button id="buybook" onclick="buy_book(1234)" style="display:none" >Buy Book</button>
+    </body>
 	<script>
-		function send_form(){
-			$.post("/open_api/login", { "firstname":$('#fname').val(), "password":$('#password').val()},
+		$('#signup').show();
+		$('#login').hide();
+
+
+
+		//function that allows an existing user to login
+               function login(){
+		       $('#login').show();
+		       $('#signup').hide();
+			$.post("/open_api/login", { "username":$('#username').val(), "password":$('#password').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
 					//Set global JWT
 					jwt = data.token;
+
 					//make secure call with the jwt
 					get_books();
 				}, "json").fail( function(response) {
@@ -24,6 +184,27 @@
 				});
 			return false;
 		}
+
+		//function that sign's up a new user
+		function signup(){
+ 	               $('#signup').show();
+                       $('#login').hide();
+                        $.post("/open_api/signup", { "signupEmail":$('#signupEmail').val(), "signupPassword":$('#signupPassword').val(), "newUserName":$('#newUserName').val(), "signupCity":$('#signupCity').val(), "signupState":$('#signupState').val()},
+                                function(data, textStatus) {
+                                        //this gets called when browser receives response from server
+                                        console.log(data.token);
+                                        //Set global JWT
+                                        jwt = data.token;
+
+                                        //make secure call with the jwt
+                                        get_books();
+                                }, "json").fail( function(response) {
+                                        //this gets called if the server throws an error
+                                        console.log("error");
+                                        console.log(response);
+                                });
+                        return false;
+                }
 
 		function get_books(){
 			 //make secure call with the jwt
@@ -41,16 +222,5 @@
                 }
 
 	</script>
-            <div id="login">
-	    	<form >
-  			<label for="fname">First name:</label><br>
-  				<input type="text" id="fname" name="fname" value="John"><br>
-  			<label for="password">Password:</label><br>
-  				<input type="password" id="password" name="password" value="12212"><br><br>
-  			<input type="submit" value="Signup" onclick="return send_form();">
-		</form>
-	    </div>
-	    <button id="buybook" onclick="buy_book(1234)" style="display:none" >Buy Book</button>
-    </body>
 </html>
 

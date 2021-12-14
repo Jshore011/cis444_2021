@@ -18,11 +18,11 @@ def handle_request():
     try:
         title = request.args.get('title')
         print(title)
-        cur.execute("INSERT INTO purchases (title, price) SELECT title, price FROM books WHERE title = '" + title + "';")
+        cur.execute("INSERT INTO pets (name, age, breed, photo) values('petname', 'age', 'breed', 'photo')";
         cur.close()
         g.db.commit();
         
-        logger.debug("Added book to cart.")
+        logger.debug("Added pet")
         return json_response(token = create_token( g.jwt_data), data =("success"))
 
     except:

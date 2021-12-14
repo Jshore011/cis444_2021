@@ -34,6 +34,7 @@
       color: #6EC5B8;
     }
  .signup{
+	
 	 position: absolute;
       left:38%;
       top:20%;
@@ -317,11 +318,11 @@
   		<li id = "PL2" onclick="$('#petLog').show();"><a href="#pet-log">Pet Log</a></li>
   		<li id = "gallery" onclick="showGallery()"><a href="#photos">Photos</a></li>
   		<li id = "pet-report2" onclick="displayReport()"><a href="#report">Pet Report</a></li>
-  		<li id = editp onclick="$('#petEditor').show();"><a href="#editpet">Edit Pets</a></li>
+  		<li id = editp onclick="showPetEdit();"><a href="#editpet">Edit Pets</a></li>
   		<li onclick="window.open('/static/dogpark-api-test.html');"><a href="#park">Find A Park</a></li>
   		<li onclick="window.open('/static/groomer-api-test.html');"><a href="#groomer">Find A Groomer</a></li>
   		<li onclick="goToChewy()"><a href="#chewy">Chewy.com</a></li>
-  		<li style ="float:right"onclick="document.execCommand("ClearAuthenticationCache");"><a href="#signout">Sign out</a></li>
+  		<li style ="float:right"onclick="goHome()"><a href="#signout">Sign out</a></li>
 		<li onclick="$('#login').show();" style="float:right"><a href="#login">Login</a></li>
 		<li onclick="$('#signup').show();" style="float:right"><a href="#signup">Sign up</a></li>
 
@@ -443,13 +444,26 @@
     		}
   	}
 
+
+		//function that shows pet editor
+		function showPetEdit(){
+			$('#petEditor').show();
+                        $('#dashboard').show();
+			$('#login').hide();
+                        $('#signup').hide();
+			$('#main').hide();
+
+
+		}
 		//function to add a pet
 		function addPet(){
 			secure_get_with_data("/secure_api/add_pet", {"petname" : $('#addPetName').val(), "age":$('#addPetAge').val(), "breed":$('#breed').val(), "photo":$('#output').val()} ,
 				function(data){
-					console.log("added pets");
-					console.log(data)},
-
+					console.log("added pet");
+					console.log(data)
+					$('#petEditor').hide();
+                        		$('#dashboard').show();
+				},
                                                 function(err){ console.log(err) });
 
 		}
@@ -459,13 +473,15 @@
 			secure_get_with_data("/secure_api/delete_pet", {"petname" : petname} ,
                                 function(data){
                                         console.log("deleted pet");
-                                        console.log(data)},
-
+                                        console.log(data)
+					$('#petEditor').hide();
+                                        $('#dashboard').show();
+		},
                                                 function(err){ console.log(err) });
 
                 }
 
-		}
+		
 	</script>
 </html>
 

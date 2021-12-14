@@ -271,6 +271,11 @@
 	    </div>
 	    <div>
 		    <div class ="userdash" id="dashboard">
+			<input type ="file" accept="image/*" onchange="loadfile(event)">
+			<img id="userphoto"/><br><br>
+			
+
+
 	    </div>
 	    <div >
   <div class ="edit" id = "petEditor">
@@ -388,7 +393,7 @@
 			$('#login').hide();
                 	$('#signup').hide();
 			$('#petEditor').hide();
-
+			$('#main').hide();
 		
 			 //make secure call with the jwt
 			secure_get_with_token("/secure_api/get_dash", {} , function(data){

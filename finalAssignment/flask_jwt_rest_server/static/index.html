@@ -314,7 +314,7 @@
 	    <div>
 		<ul class="sidenav">
   		<li onclick="goHome()"><a class="active" href="#home">PetMe+</a></li>
-  		<li id = "PL2" onclick="$('#petEditor').show();"><a href="#pet-log">Pet Log</a></li>
+  		<li id = "PL2" onclick="$('#petLog').show();"><a href="#pet-log">Pet Log</a></li>
   		<li id = "gallery" onclick="showGallery()"><a href="#photos">Photos</a></li>
   		<li id = "pet-report2" onclick="displayReport()"><a href="#report">Pet Report</a></li>
   		<li id = editp onclick="$('#petEditor').show();"><a href="#editpet">Edit Pets</a></li>
@@ -442,6 +442,30 @@
       		reader.readAsDataURL(input.files[0]);
     		}
   	}
+
+		//function to add a pet
+		function addPet(){
+			secure_get_with_data("/secure_api/add_pet", {"petname" : $('#addPetName').val(), "age":$('#addPetAge').val(), "breed":$('#breed').val(), "photo":$('#output').val()} ,
+				function(data){
+					console.log("added pets");
+					console.log(data)},
+
+                                                function(err){ console.log(err) });
+
+		}
+
+		//function to remove a pet
+		function deletePet(petname){
+			secure_get_with_data("/secure_api/delete_pet", {"petname" : petname} ,
+                                function(data){
+                                        console.log("deleted pet");
+                                        console.log(data)},
+
+                                                function(err){ console.log(err) });
+
+                }
+
+		}
 	</script>
 </html>
 

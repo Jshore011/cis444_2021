@@ -16,49 +16,47 @@
     }
  .login{
 	 position: absolute;
-      left:30%;
+      left:38%;
       top:20%;
-      width:500px;
+      width:300px;
       overflow: hidden;
       display: center;
       margin-top:auto;
       margin-left: auto;
       margin-right: auto;
       background: white;
-      border-color: slategray;
-      border-style: groove;
+      border-color: #6EC5B8;
       padding: 80px;
-      border-radius: 30px;
+      border-radius: 10px;
       font-size: 30px;
       font-family: "Veranda", Veranda, sans-serif;
-      font-size: xx-large;
+      font-size: x-large;
       color: #6EC5B8;
     }
  .signup{
 	 position: absolute;
-      left:30%;
+      left:38%;
       top:20%;
-      width:500px;
+      width:300px;
       overflow: hidden;
       display: center;
       margin-top:auto;
       margin-left: auto;
       margin-right: auto;
       background: white;
-      border-color: slategray;
-      border-style: groove;
+      border-color: #6EC5B8;
       padding: 80px;
-      border-radius: 30px;
+      border-radius: 10px;
       font-size: 30px;
       font-family: "Veranda", Veranda, sans-serif;
-      font-size: xx-large;
+      font-size: x-large;
       color: #6EC5B8;
     }
   .button{
       font-family: "Veranda", Veranda, sans-serif;
-      font-size: larger;
-      width:120px;
-      height:50px;
+      font-size: medium;
+      width:75px;
+      height:25px;
       margin-left: auto;
       margin-right: auto;
       border-radius: 10px;
@@ -104,31 +102,7 @@
       background-color: #6EC5B8;
       color:white;
     }
-    #loginimg{
-	background-image: url('https://startuppup.com/wp-content/uploads/2021/02/dog-group-3.jpg');
 
-    }
-
-    .usersettings{
-    position: absolute;
-    left:30%;
-    top:20%;
-    width:600px;
-    height: 500px;
-    overflow: hidden;
-    display: center;
-    margin-top:auto;
-    margin-left: auto;
-    margin-right: auto;
-    background: white;
-    border-color: slategray;
-    border-style: groove;
-    padding: 80px;
-    border-radius: 30px;
-    font-size: 30px;
-    text-align: -webkit-left;
-    font-family: "Veranda", Veranda, sans-serif;
-  }
     #imageUpload
     {
       display: none;
@@ -205,7 +179,57 @@
   transform: translate(-50%, -50%);
   color: white;
 }
- 
+  .edit{
+      position: absolute;
+      left:8%;
+      top:20%;
+      width:600px;
+      height: 500px;
+      overflow: hidden;
+      display: center;
+      margin-top:auto;
+      margin-left: auto;
+      margin-right: auto;
+      background: white;
+      padding: 80px;
+      border-radius: 30px;
+      font-size: 30px;
+      text-align: -webkit-left;
+      font-family: "Veranda", Veranda, sans-serif;
+
+    }
+    .edHead{
+      text-align:center;
+      font-size: 50px;
+      font-weight:bold;
+      margin-right: 25px;
+      color: #6EC5B8;
+
+    }
+    .leftcol{
+      margin:5px;
+      width: 50px;
+      float:left;
+      color: #6EC5B8;
+    }
+    .rightCol{
+      margin-right: 250px;
+      width: 50px;
+      float:right;
+      color: #6EC5B8;
+    }
+    .editfoot{
+      margin-bottom: 400px;
+}
+    .remove-edit-button{
+      position: absolute;
+      float:right;
+      margin-left: 375px;
+    }
+    .add-edit-button{
+      position:absolute;
+      margin-left: 235px;
+    }
 
 </style>
     <body>
@@ -217,8 +241,6 @@
   				</div>
 			</div>
 		  
-	   
-	    <div id = "loginimg"></div>
      <div class="login" id = login>
 	     <div>
                  <label for="logintext">Welcome Back, Login!</label><br><br>
@@ -242,68 +264,59 @@
                                        <input type="text" id="signupCity" name="signupCity" value=""><br>
 				<label for="state">State:</label><br>
                                        <input type="text" id="signupState" name="signupState" value=""><br><br>
-                                       <input type="submit" value="Sign Up" class="button" onclick= "signup(); return false">
-				<label for"or" value="or"><br>
-				       <input type="submit" value="Login" class="button" onclick = "login(); return false"><br>
+                                       <input type="submit" value="Sign Up" class="button" onclick= "signup(); return false"><br>
 
 
 		    </div>
 	    </div>
 	    <div>
-		    <div class =userdash id=dashboard>
-
-		    </div>
+		    <div class ="userdash" id="dashboard">
 	    </div>
-	    <div>
-  		<div class = usersettings id="edituser">
-    		<div >
-      		   <div>	
-        		<div class = edHead >
-          			<label id = setting-header for="settings">Settings</label><br><br>
-        		</div>
-        	   	    <div class = rightCol>
-          			<input type="file" accept="image/*" onchange="loadFile(event)">
-          			<img id="useroutput"/><br><br>
-        		    </div>
-      			</div>
-    		  </div>
-    		<div class = leftcol>
-                  <div class = userInfo>
-                      <form >
-          		<label id=addNameuser for="Select">Name:</label>
-          		<input type="text" id="adduserName" name="Uname"><br><br>
-          		<label id=addAgeUser for="Select">Age:</label>
-          		<input type="text" id="adduserAge" name="UAge"><br><br>
-        	    </form>
-      		</div>
-    	     </div>
-    	<div>
-      	     <div class = editfoot>
-             <div class = save-edit-button><input type="submit" value="save" class="button" id = saveuser onclick= "submitForm(); return false"></div>
-             <div class = add-edit-button><input type="submit" value="add" class="button" id = adduser onclick= "submitForm(); return false"></div>
-             <div class = remove-edit-button><input type="submit" value="delete" class="button" id = removeuser onclick= "submitForm(); return false"></div>
-       </div>
-     </div>
+	    <div >
+  <div class ="edit" id = "petEditor">
+    <div >
+      <div>
+        <div class = edHead>
+          <label id = edit-header for="Pet">Edit Pets</label><br><br>
+        </div>
+        <div class = rightCol>
+          <input type="file" accept="image/*" onchange="loadFile(event)">
+          <img id="output"/><br><br>
+        </div>
+      </div>
     </div>
-	    </div>
-	    <div id = "groom">
-   		<div id="panel"></div>
-
-		<!-- Map appears here -->
-		<div id="map"></div>
+    <div class = leftcol>
+      <div class = petInfo>
+        <form >
+          <label id=addNameEditor for="Select">Name:</label>
+          <input type="text" id="addPetName" name="pname"><br><br>
+          <label id=addAgeEditor for="Select">Age:</label>
+          <input type="text" id="addPetAge" name="pAger"><br><br>
+          <label id=addBreedEditor for="Select">Breed:</label>
+          <input type="text" id="breed" name="breed"><br><br><br>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div class = editfoot id="settingedit">
+        <div class = add-edit-button><input type="submit" value="add" class="button" id = addEdit onclick= "addPet(); return false"></div>
+        <div class = remove-edit-button><input type="submit" value="delete" class="button" id = removeEdit onclick= "deletePet(); return false"></div>
+      </div>
+    </div>
+  </div>
+</div>
 	    </div>
 	    <div>
 		<ul class="sidenav">
   		<li onclick="goHome()"><a class="active" href="#home">PetMe+</a></li>
-  		<li id = "PL2" onclick="showPetLog()"><a href="#pet-log">Pet Log</a></li>
+  		<li id = "PL2" onclick="$('#petEditor').show();"><a href="#pet-log">Pet Log</a></li>
   		<li id = "gallery" onclick="showGallery()"><a href="#photos">Photos</a></li>
   		<li id = "pet-report2" onclick="displayReport()"><a href="#report">Pet Report</a></li>
-  		<li id = editp onclick="changePets()"><a href="#editpet">Edit Pets</a></li>
+  		<li id = editp onclick="$('#petEditor').show();"><a href="#editpet">Edit Pets</a></li>
   		<li onclick="window.open('/static/dogpark-api-test.html');"><a href="#park">Find A Park</a></li>
   		<li onclick="window.open('/static/groomer-api-test.html');"><a href="#groomer">Find A Groomer</a></li>
   		<li onclick="goToChewy()"><a href="#chewy">Chewy.com</a></li>
-  		<li style="float:right"><a href="#signout">Sign out</a></li>
-  		<li onclick="$('#edituser').show();" style="float:right"><a href="#settings">Settings</a></li>
+  		<li style ="float:right"onclick="document.execCommand("ClearAuthenticationCache");"><a href="#signout">Sign out</a></li>
 		<li onclick="$('#login').show();" style="float:right"><a href="#login">Login</a></li>
 		<li onclick="$('#signup').show();" style="float:right"><a href="#signup">Sign up</a></li>
 
@@ -316,9 +329,20 @@
 		$('#login').hide();
 		$('#signup').hide();
 		$('#dashboard').hide();
-		$('#edituser').hide();
+		$('#petEditor').hide();
+		var loadFile = function(event) {
+    		var reader = new FileReader();
+    		reader.onload = function(){
+      		var output = document.getElementById('output');
+      		output.src = reader.result;
+    		};
+    		reader.readAsDataURL(event.target.files[0]);
+  		};
 		//function that allows an existing user to login
                function login(){
+                       $('#signup').hide();
+                       $('#dashboard').hide();
+                       $('#petEditor').hide();
 			$.post("/open_api/login", { "loginEmail":$('#loginEmail').val(), "loginPassword":$('#loginPassword').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
@@ -338,6 +362,10 @@
 
 		//function that sign's up a new user
 		function signup(){
+			$('#login').hide();
+                       $('#dashboard').hide();
+                       $('#edituser').hide();
+
                         $.post("/open_api/signup", { "signupEmail":$('#signupEmail').val(), "signupPassword":$('#signupPassword').val(), "newUserName":$('#newUserName').val(), "signupCity":$('#signupCity').val(), "signupState":$('#signupState').val()},
                                 function(data, textStatus) {
                                         //this gets called when browser receives response from server
@@ -359,6 +387,8 @@
 		function get_dash(){
 			$('#login').hide();
                 	$('#signup').hide();
+			$('#petEditor').hide();
+
 		
 			 //make secure call with the jwt
 			secure_get_with_token("/secure_api/get_dash", {} , function(data){
@@ -379,8 +409,34 @@
                         secure_get_with_token("/secure_api/get_books", {"book_id" : book_id} , function(data){console.log("got books"); console.log(data)},
                                                 function(err){ console.log(err) });
                 }
+
+		//function that brings user back to homepage
+		function goHome(){
+			$('#login').hide();
+                        $('#signup').hide();
+                        $('#petEditor').hide();
+			$('#dashboard').hide();
+			$('#main').show();
+		}
 		
 
+ 		//function for user to choose avatar from local filesystem
+  		$("#image").change(function(){
+    		readURL(this);
+    		//other uploading process [server side by ajax and form-data ]
+  		});
+
+  		function readURL(input) {
+    		if (input.files && input.files[0]) {
+      		var reader = new FileReader();
+
+      		reader.onload = function (e) {
+        	$('#profile').attr('src', e.target.result);
+      		}
+
+      		reader.readAsDataURL(input.files[0]);
+    		}
+  	}
 	</script>
 </html>
 

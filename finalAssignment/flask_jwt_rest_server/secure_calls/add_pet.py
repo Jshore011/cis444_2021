@@ -9,16 +9,14 @@ def handle_request():
     
 
     cur = g.db.cursor();
-    logger.debug(request.args.get('petname'))
-    logger.debug(request.args.get('age'))
-    logger.debug(request.args.get('breed'))
-    logger.debug(request.args.get('photo'))
+    logger.debug(request.form['petname'])
+    logger.debug(request.form['age'])
+    logger.debug(request.form['breed'])
 
     
     try:
-        title = request.args.get('title')
-        print(title)
-        cur.execute("INSERT INTO pets (name, age, breed, photo) values('petname', 'age', 'breed', 'photo')";
+
+        cur.execute("INSERT INTO pets (name, age, breed) values('" + request.form['petname'] + "','" + request.form['age'] + "', '" + request.form['breed'] + "');")
         cur.close()
         g.db.commit();
         

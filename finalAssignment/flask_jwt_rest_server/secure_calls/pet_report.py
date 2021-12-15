@@ -22,10 +22,10 @@ def handle_request():
     for i in logs:
 
         if count < len(logs) :
-            message += '{"PetName":"'+str(i[0]) + '","type":"' + str(i[1]) +'","comment":"' + str(i[3]) +'"},'
+            message += '{"PetName":"'+str(i[0]) + '","type":"' + str(i[1]) +'","comment":"' + str(i[2]) +'"},'
             count=count+1
         else:
-            message += '{"PetName":"'+str(i[0]) +'","type":"' + str(i[1]) +'","comment":"' + str(i[3]) +'"}'
+            message += '{"PetName":"'+str(i[0]) +'","type":"' + str(i[1]) +'","comment":"' + str(i[2]) +'"}'
     message += "]}"
     print(message)
     #print("sending silly token")

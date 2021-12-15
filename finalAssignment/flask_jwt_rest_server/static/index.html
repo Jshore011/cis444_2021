@@ -182,21 +182,23 @@
 }
   .edit{
       position: absolute;
-      left:8%;
+      left:38%;
       top:20%;
-      width:600px;
-      height: 500px;
+      width:300px;
       overflow: hidden;
       display: center;
       margin-top:auto;
       margin-left: auto;
       margin-right: auto;
       background: white;
+      border-color: #6EC5B8;
       padding: 80px;
-      border-radius: 30px;
+      border-radius: 10px;
       font-size: 30px;
-      text-align: -webkit-left;
       font-family: "Veranda", Veranda, sans-serif;
+      font-size: x-large;
+      color: #6EC5B8;
+
 
     }
     .edHead{
@@ -205,31 +207,6 @@
       font-weight:bold;
       margin-right: 25px;
       color: #6EC5B8;
-
-    }
-    .leftcol{
-      margin:5px;
-      width: 50px;
-      float:left;
-      color: #6EC5B8;
-    }
-    .rightCol{
-      margin-right: 250px;
-      width: 50px;
-      float:right;
-      color: #6EC5B8;
-    }
-    .editfoot{
-      margin-bottom: 400px;
-}
-    .remove-edit-button{
-      position: absolute;
-      float:right;
-      margin-left: 375px;
-    }
-    .add-edit-button{
-      position:absolute;
-      margin-left: 235px;
     }
 
     ::-webkit-scrollbar {
@@ -251,48 +228,55 @@
       background: #6EC5B8;
     }
      .log{
+      
       position: absolute;
-      left:8%;
+      left:38%;
       top:20%;
-      width:600px;
-      height: 500px;
+      width:500px;
       overflow: hidden;
       display: center;
       margin-top:auto;
       margin-left: auto;
       margin-right: auto;
       background: white;
+      border-color: #6EC5B8;
       padding: 80px;
-      border-radius: 30px;
+      border-radius: 10px;
       font-size: 30px;
-      text-align: -webkit-left;
       font-family: "Veranda", Veranda, sans-serif;
+      font-size: x-large;
+      color: #6EC5B8;
 
     }
     .logHead{
       text-align:center;
       font-size: 50px;
       font-weight:bold;
-      margin-right: 25px;
+      margin-right: 45px;
       color: #6EC5B8;
+      font-family: 'Pacifico';
+
 
     }
     .reportTable{
-      text-align:center;
       position: absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%, 0%);
-      width:550px;
+      left:38%;
+      top:20%;
+      width:500px;
       overflow: hidden;
-      display: center top;
+      display: center;
       margin-top:auto;
       margin-left: auto;
       margin-right: auto;
       background: white;
+      border-color: #6EC5B8;
       padding: 80px;
       border-radius: 10px;
       font-size: 30px;
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: x-large;
+      color: #6EC5B8;
+
     }
     #signupHeader{
 	
@@ -311,9 +295,48 @@
       margin-right: 25px;
       color: #6EC5B8;
       font-family: 'Pacifico';
+    
     }
+    #edit-header{
+	text-align:center;
+      font-size: 50px;
+      font-weight:bold;
+      margin-right: 25px;
+      color: #6EC5B8;
+      font-family: 'Pacifico';
+
+    }
+    .userdash{
+	background: url(https://imengine.public.prod.sci.navigacloud.com/?uuid=8b348407-0aff-5874-ad44-7f2fff4c68c7&type=preview&width=3001&height=2000&q=60) no-repeat center;
+        background-size: cover;
+	margin-top: 100px;
+        height: 1200px;
+        position: relative;
 
 
+
+
+    }
+    #report-header{
+ text-align:center;
+      font-size: 50px;
+      font-weight:bold;
+      margin-right: 25px;
+      color: #6EC5B8;
+      font-family: 'Pacifico';
+
+    }
+    .text-area{
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: larger;
+      width: 450px;
+      height: 100px;
+      align-content:center;
+      font-size: medium;
+      overflow: scroll;
+      margin-right: auto;
+      margin-left: auto;
+    }
 
 
 </style>
@@ -412,6 +435,7 @@
           <input type="text" id="petLogName" name="petLogName"><br><br>
           <label id=petLogType for="Select">Log Type (food, medicine, or exercise)</label>
           <input type="text" id="logType" name="logType"><br><br>
+	  <label id=petLogcomment for="Select">Comments</label>
 	  <textarea class = "text-area" type="text" id="comments" name="comments" required
               minlength="0" maxlength="500" size="500"></textarea><br>
         </form>
@@ -671,7 +695,7 @@
                                                cell1 = row.insertCell(0);
                                                cell2= row.insertCell(1);
 					       cell3=row.insertCell(2);	
-                                               cell1.innerHTML = data.data.logs[i].name;
+                                               cell1.innerHTML = data.data.logs[i].PetName;
                                                cell2.innerHTML = data.data.logs[i].type;
 					       cell3.innerHTML = data.data.logs[i].comment;			
                                         }

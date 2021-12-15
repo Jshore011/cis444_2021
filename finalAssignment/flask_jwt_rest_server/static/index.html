@@ -38,7 +38,7 @@
 	 position: absolute;
       left:38%;
       top:20%;
-      width:300px;
+      width:250px;
       overflow: hidden;
       display: center;
       margin-top:auto;
@@ -293,6 +293,26 @@
       padding: 80px;
       border-radius: 10px;
       font-size: 30px;
+    }
+    #signupHeader{
+	
+      text-align:center;
+      font-size: 50px;
+      font-weight:bold;
+      margin-right: 25px;
+      color: #6EC5B8;
+      font-family: 'Pacifico';
+    }
+
+    #loginHeader{
+      text-align:center;
+      font-size: 50px;
+      font-weight:bold;
+      margin-right: 25px;
+      color: #6EC5B8;
+      font-family: 'Pacifico';
+    }
+
 
 
 
@@ -308,7 +328,9 @@
 		  
      <div class="login" id = login>
 	     <div>
+		     <div id ="loginHeader">
                  <label for="logintext">Welcome Back, Login!</label><br><br>
+		     </div>
                        <label for="email">Email:</label><br>
                              <input type="text" id="loginEmail" name="loginEmail" value=""><br>
                                 <label for="password">Password:</label><br>
@@ -318,7 +340,9 @@
         </div>
 	    <div class = "signup" id = signup>
 		    <div>
+			    <div id ="signupHeader">
 			<label for="signupForm">Signup!</label><br><br>
+			    </div>
                        		<label for="email">E-mail:</label><br>
                              		<input type="text" id="signupEmail" name="signupEmail" value=""><br>
                                 <label for="password">Password:</label><br>

@@ -113,8 +113,20 @@
     {
       cursor: pointer;
     }
+    #userinfo{
+	    transform: translate(3%, -530%);
+    }
+    #mikkoinfo{
+	transform: translate(25%, -800%);
 
-    #output {
+    }
+    #mistyinfo{
+        transform: translate(50%, -1075%);
+
+    }
+    #userImg img{
+	    transform: translate(10%, -110%);
+	    margin-bottom:500px;
       margin-right: 500px;
       width: 250px;
       height: 250px;
@@ -125,7 +137,37 @@
       -o-border-radius: 50%;
       border-radius: 50%;
       border-color: #6EC5B8;
-      border-style: groove;
+    }
+    #mikkoImg img{
+	    transform: translate(200%, -485%);
+
+	    margin-right: 500px;
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      border-color: #6EC5B8;
+  
+    }
+    #mistyImg img{
+
+	transform: translate(360%, -650%);
+
+	    margin-right: 500px;
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      border-color: #6EC5B8;
+      
     }
 
     #imageUpload
@@ -309,7 +351,7 @@
     .userdash{
 	background: url(https://imengine.public.prod.sci.navigacloud.com/?uuid=8b348407-0aff-5874-ad44-7f2fff4c68c7&type=preview&width=3001&height=2000&q=60) no-repeat center;
         background-size: cover;
-	margin-top: 100px;
+	margin-top: 400px;
         height: 1200px;
         position: relative;
 
@@ -319,6 +361,15 @@
     }
     #report-header{
  text-align:center;
+      font-size: 50px;
+      font-weight:bold;
+      margin-right: 25px;
+      color: #6EC5B8;
+      font-family: 'Pacifico';
+
+    }
+    #photo-header{
+	text-align:center;
       font-size: 50px;
       font-weight:bold;
       margin-right: 25px;
@@ -337,8 +388,53 @@
       margin-right: auto;
       margin-left: auto;
     }
+    #petGallery{
+ 
+      overflow: hidden;
+      display: center;
+      margin-top:100px;
+      margin-left: ;
+      margin-right: auto;
+      background: white;
+      border-color: #6EC5B8;
+      padding: 80px;
+      border-radius: 10px;
+      font-size: 30px;
+      font-family: "Veranda", Veranda, sans-serif;
+      font-size: x-large;
+      color: #6EC5B8;
 
 
+
+    }
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 300px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+	color: #6EC5B8;
+
+  padding: 15px;
+  text-align: center;
+}
+.leftcol{
+      margin:5px;
+      width: 50px;
+      float:left;
+      color: #6EC5B8;
+    }
 </style>
     <body>
 	 
@@ -382,11 +478,35 @@
 		    </div>
 	    </div>
 	    <div>
-		    <div class ="userdash" id="dashboard">
-			<input type ="file" accept="image/*" onchange="loadfile(event)">
-			<img id="userphoto"/><br><br>
-		<input type="file" accept="image/*" onchange="loadFile(event)">
-          <img id="output"/><br><br>
+		    <div class ="userdash" id="dashboard"
+			    <div id = "leftcol">
+			    <div id = "userImg">
+				    <img src="https://lh3.googleusercontent.com/Rf-7Azyke5ebkGbuWtaeMtQs2Y3ycLDvIa9L3SV3ql_bY1JrJEGbX5-I_y5AvriXMdhnW60MnPaIB5UlxAnJbk0LqCTnlehRE3TI8imwAFKM8T17UUUVjYf8ZbMcOErS32euZcYY6OTXxZRXb3wHLwzV0x89xH9Ao2wystrDIkMXW2TisEWg1-JUw5X5dudZkSMBwfUd9ZyVWq8rqD-W6K7wDHqZEbiPFdg3k98Aq3BdSKOsWLcmDqGqCp_9NMpA6RPQsCSuAd5WxHRd54XoqKKw83UPm1ryjfxFhsKB5ujCiXTVh80ihqkw53u2k4JOCGtBfrT_N_-HG_TtU-2Zu13S20To5HSaPruFSRtKWpRHQCa9tQXf5WTt5IoXCJ9z_4o3fOUz11f--3D9U72ZTNBjlftmZfMCPTNBuuVnbMa-f0cLu1xkJWq7POjFJxJKfIyOroazFWAwKOhn8oTNkRxEjqfMBOnm1BEdI1g0v3D113XI93OPPzwrdvoQIYyok_8wYLpEAjR0-L_m4Rv2Y2C6LSXzraVHt9p9bu3ftU7DPz0bDDVkQRffKzSsCwzjYAA4uKa3qYFrA1hIVYOecCyIJcZZFFq1l6lsHiWEaTarKEqi5nJIwAuNpKu8TILwdhuBnZjbehL52DSMtDzcNiXPpR_WFxf0FcjQAokuO2LmGFxQE7xRHLll-sB9LPE8gN_HilLZ6CUMgkNF-408xg=w773-h516-no?authuser=0" alt="user image"><br><br>
+				    <div id ="userinfo">
+				    <label for="name">Name: Jess</label><br>
+				<label for="city">City: Vista</label><br>
+				<label for="state">State: California</label><br><br>
+			</div>
+			    </div>
+		    <div id ="mikkoImg">
+			    <img src="https://lh3.googleusercontent.com/OHvMljn5xAuJynCEEfwlKrL8VCz7VLgVZjLD_IPbB-zQYcF60tb3dhMF30NAFPAwIR5imGa6P2jVxvfBq-cXjJrMqTDwnH8BswD2gKCWnJXv0eI6dFf5RKvFPsF6Zc61y2XzyKqk6DtvaJciFakaZ_qR-onAD4X1A84gureI3LOtS_VXSX-AvpX8H2PPYlYbmHmqUauk2Cy06fDfK84VrZn372f6Zl94-mOicfX21lVhWhMSORmA-a-KxXMu4MOijJDLRWLnDQlkJP7-ENwapMspjQAZOz3cPqEy1GxjDQwxN8VabbhtDOvYnUl3ffxaR4DB_4cZk6exfCPpudndBo98uFD3631CjOyVNCz9H_nfguxCvLU_97nG5q2l-0YoZ_u7JJGIAP8SbZUgOOtspyzhnZAyHrW6bcJywqpTd3FN2CzMd9eXyp8eAZmtVlvG6sB6jTuVBB8PeDtDCeDZMQYbZp68jK6LUI1a3nXN5S1Zgx3wb3D9UUyDXfad6BxdrwcnYucbzFD7vKb5y9BV4W1Y9aJe4f5yPR8btSpMWjnYpJmz24azulfrh_1bO5ZY9fOJMY5uqx5lsDrGTgp73GTz9zlne5iIKMO5WRDn9Kd8Rp_zHBZrehdKwNNVz1XTPPPYzUbIsDz0haAtjkCPUzLDcBzBUTu9cDpsd6GsfNpwkR9Lshwrj47-7IlBhJ6iYt3bUg4NAcRnQiwzqnursxY=w773-h1031-no?authuser=0" alt="mikko">
+			    <div id = "mikkoinfo">
+			    <label for="name">Name: Mikko</label><br>
+                            <label for="city">Age: 12 weeks</label><br>
+                            <label for="state">breed: Australian Shepherd</label><br><br>
+			    </div>
+
+
+	    </div>
+	    <div id = "mistyImg">
+		    <img src="https://lh3.googleusercontent.com/TPELcvIt59C9V_RslzlINCbYiWdmfPcszOGcD7dMoHLCETVAQTr9VcdvUI22hg77mnOqpYrXuVcVsjv_Dor3l73Dp1PC4zAm9O9p1guPbIbY-Sz_XgdNpbE7Lt0W_ekDorBaDP7mOmxWCHH6go59PBDKu3ueVQIpv9V5-4xd4H2PJ1-JoOMsvqVbf2eL2uEm7kbGbS9HrcBPdr5pQmjCW58cM6p7unF6dpLwCsiTzXXjBI5Pkmhv8qwZ5wJyKR-zklhVm-0Cvaoddge25GQqsNUmrBna-qurz5AAjVgumdPPAzeNf5MeeCZulF3sk1_uvedj6wy5sSG8UiSP815j6X_uE0ytYhkKT-yhtA2UfMFYvchSknCeMtBP-aMlmGRn57yZjOW1O3moGerAf3M5eJDfiiDJKeuuTjre-W3Jqim7CMkBTkJ9yi3SfzhUvwRhRHwJDOZnopXxuFzfXq1FEBV_c_G4xVbApomutEBDEVcIBhdoPR3uplYGKcG9Jn5IRXJ6-Ux9cxecbb2rI_N1LvF99vXOjAA04rbr4ZFJOoFMoIAcv7IWetJgPptnHjWfDQqBicyupjsh6e_FBV-hn8NH23e-MysFLDQsGBxiKyXjKgo5KyAMwpcqvcDavZbss4e7pm17pbKs8Rt8g8lLGEhRcupnmOy7JXZps-t28MpXIP_55Q7N8gzLnAv0YA4mk8MVfzUJI9vrvI8kdaDB0Os=w773-h1031-no?authuser=0" alt="Misty"><br>
+		    <div id ="mistyinfo">       
+		    <label for="name">Name: Misty</label><br>
+                            <label for="city">Age: 5 years</label><br>
+                            <label for="state">breed: Black Cat</label><br><br>
+		    </div>
+
+	    </div>
 			
 
 
@@ -474,9 +594,38 @@
     </div>
   </div>
 </div>
+	    </div>
+	    <div id ="petGallery">
+		<div class = photoHead>
+                <label id = photo-header for="photos">Pet Photos!</label><br><br>
+        </div>
+	<div class="gallery">
+  <a target="_blank" href="https://lh3.googleusercontent.com/dCm1-6lU79i4Ffan338gfLbkijLLcl9QmyXF18_R7Wkiog_c0nlk-4tttud3u_UUp2UUGmvdYsNf-o9ENMQbM3WxSoJf3nkMSua0gHZYnFW4pz-YwXXxTD-G14KE180czTkkkD_9-bzpd8P1S64xiAvj7qcHn0SALXzJDhOc5y7tHD5MGFj6bsgKsYrlNdXellNgF6MeAEBUyVleAz-gJzaZiI3EpvCIj9I4YnVtGg7UD8snJHtu5htSML5FF66IliXhRzQT-7q-JDgDVTW9pFG4AlJnF1JcwYnEs0fOOYYuSPYjMTvtjavB1wULVGiBQqiBniAyThSCU7c9Ll-Y96Pgb74inatcNWkyHE9557oFT6T2Vs5BLtP5dC7yYWuQ826vaApJr8njNNBOi-dpKjFVwp8yKILmHI-jDzeODrQ6Fo08QX7O3-UbZ9mYsUNBwiMobfUYETSZkrV3uiE7nKjMI8S8ZQWGItU3-OLNodh53JUoPklA0KIWBM8vzElCTuYreYsOHOp0QsdCS8t1l8H4vpL2pczFywFeBJX7sPuHbW_Nl86rizlqwBXo0HOo-PcnRh8nFuJZgNTxuB3waX2bvNjRq-RbEOC8yfvTPEl1YqIZnM-_txm_Xo1vNKMIdDkDywxDykiQU92AS7oGxFBq_NmSVooOcut4ujkdUxr8XaAC9D5qDdWFylcnx1KzOsnxlQFfSQkFTPCbnsZ4Cg=w773-h1031-no?authuser=0">
+    <img src="https://lh3.googleusercontent.com/dCm1-6lU79i4Ffan338gfLbkijLLcl9QmyXF18_R7Wkiog_c0nlk-4tttud3u_UUp2UUGmvdYsNf-o9ENMQbM3WxSoJf3nkMSua0gHZYnFW4pz-YwXXxTD-G14KE180czTkkkD_9-bzpd8P1S64xiAvj7qcHn0SALXzJDhOc5y7tHD5MGFj6bsgKsYrlNdXellNgF6MeAEBUyVleAz-gJzaZiI3EpvCIj9I4YnVtGg7UD8snJHtu5htSML5FF66IliXhRzQT-7q-JDgDVTW9pFG4AlJnF1JcwYnEs0fOOYYuSPYjMTvtjavB1wULVGiBQqiBniAyThSCU7c9Ll-Y96Pgb74inatcNWkyHE9557oFT6T2Vs5BLtP5dC7yYWuQ826vaApJr8njNNBOi-dpKjFVwp8yKILmHI-jDzeODrQ6Fo08QX7O3-UbZ9mYsUNBwiMobfUYETSZkrV3uiE7nKjMI8S8ZQWGItU3-OLNodh53JUoPklA0KIWBM8vzElCTuYreYsOHOp0QsdCS8t1l8H4vpL2pczFywFeBJX7sPuHbW_Nl86rizlqwBXo0HOo-PcnRh8nFuJZgNTxuB3waX2bvNjRq-RbEOC8yfvTPEl1YqIZnM-_txm_Xo1vNKMIdDkDywxDykiQU92AS7oGxFBq_NmSVooOcut4ujkdUxr8XaAC9D5qDdWFylcnx1KzOsnxlQFfSQkFTPCbnsZ4Cg=w773-h1031-no?authuser=0" alt="Mikko Yard" width="600" height="400">
+  </a>
+  <div class="desc">Mikko hanging out in the yard, What a Life!</div>
+</div>
 
+<div class="gallery">
+  <a target="_blank" href="https://lh3.googleusercontent.com/Fo_7j-M-aNJkea1qG6q-p-KJqW9L0GPzLsX5HNv0X2dBWc0WraqOvVJA4pWPJHZqDjfMlLwPAQg0dGHRx1leRCJN1G_8Zqr-jxp7Cl0rkq_h-nsPusVVHVZ-JBph3Fs9lxDBv_KEwS4AMM28a9I2smcGVIwdqyjgcTdPtnea95wJPAxzPfUKR7DniF6G88unOTG2AXXZ-Yk8eaXTZzgyYa4_xy0kTg21WNl5o8ABW_FVV1zDDCilKRWVG_EVaz1m-kqQMf_ttq-NXgy4kR0v7eUXnKk9uyVgm2HYbkUfqn6AvkScEVhbyTH1yt8QTRGJ6BAHd5FnpjOIu9lIM6fvGjqRJeAHV0rez1A5oOv7zIQHZokpCRWUQbbh1fLZPJOhRN-LfiOIwNDKSBiJwz5HN24P61Mq72-NkfO1Au9u7EOoaasGz--XCXe_hucRAbR3Yj64ZHxqKcImlWnxT9i-D_fKAOJlx0gYZtEVi2QxsL_kRn2DCyODJeAkDanvPVED8_I8B-fyGyLHsnh4TCYHmETIKR0WUhBpuTaKVJs1sD2iFlMNU-mwFt3hpcLHow8iwJklGMtCZPhphm1rvqVN_UDylEVyVBSEqQzhzbvibKnwMLrMQH6FO-adlkeb5f9lTOYp875eABDl1Xjymike7vraIoXvXmmKZwlV7WXl-pjMNgBxMA5iMxkR45bmYUEov7jvOQgJpm1DCUe0GLDmq7s=w773-h580-no?authuser=0">
+    <img src="https://lh3.googleusercontent.com/Fo_7j-M-aNJkea1qG6q-p-KJqW9L0GPzLsX5HNv0X2dBWc0WraqOvVJA4pWPJHZqDjfMlLwPAQg0dGHRx1leRCJN1G_8Zqr-jxp7Cl0rkq_h-nsPusVVHVZ-JBph3Fs9lxDBv_KEwS4AMM28a9I2smcGVIwdqyjgcTdPtnea95wJPAxzPfUKR7DniF6G88unOTG2AXXZ-Yk8eaXTZzgyYa4_xy0kTg21WNl5o8ABW_FVV1zDDCilKRWVG_EVaz1m-kqQMf_ttq-NXgy4kR0v7eUXnKk9uyVgm2HYbkUfqn6AvkScEVhbyTH1yt8QTRGJ6BAHd5FnpjOIu9lIM6fvGjqRJeAHV0rez1A5oOv7zIQHZokpCRWUQbbh1fLZPJOhRN-LfiOIwNDKSBiJwz5HN24P61Mq72-NkfO1Au9u7EOoaasGz--XCXe_hucRAbR3Yj64ZHxqKcImlWnxT9i-D_fKAOJlx0gYZtEVi2QxsL_kRn2DCyODJeAkDanvPVED8_I8B-fyGyLHsnh4TCYHmETIKR0WUhBpuTaKVJs1sD2iFlMNU-mwFt3hpcLHow8iwJklGMtCZPhphm1rvqVN_UDylEVyVBSEqQzhzbvibKnwMLrMQH6FO-adlkeb5f9lTOYp875eABDl1Xjymike7vraIoXvXmmKZwlV7WXl-pjMNgBxMA5iMxkR45bmYUEov7jvOQgJpm1DCUe0GLDmq7s=w773-h580-no?authuser=0" alt="Mikko belly" width="600" height="400">
+  </a>
+  <div class="desc">Mikko Showing her Cute Belly!</div>
+</div>
 
+<div class="gallery">
+  <a target="_blank" href="https://lh3.googleusercontent.com/TPELcvIt59C9V_RslzlINCbYiWdmfPcszOGcD7dMoHLCETVAQTr9VcdvUI22hg77mnOqpYrXuVcVsjv_Dor3l73Dp1PC4zAm9O9p1guPbIbY-Sz_XgdNpbE7Lt0W_ekDorBaDP7mOmxWCHH6go59PBDKu3ueVQIpv9V5-4xd4H2PJ1-JoOMsvqVbf2eL2uEm7kbGbS9HrcBPdr5pQmjCW58cM6p7unF6dpLwCsiTzXXjBI5Pkmhv8qwZ5wJyKR-zklhVm-0Cvaoddge25GQqsNUmrBna-qurz5AAjVgumdPPAzeNf5MeeCZulF3sk1_uvedj6wy5sSG8UiSP815j6X_uE0ytYhkKT-yhtA2UfMFYvchSknCeMtBP-aMlmGRn57yZjOW1O3moGerAf3M5eJDfiiDJKeuuTjre-W3Jqim7CMkBTkJ9yi3SfzhUvwRhRHwJDOZnopXxuFzfXq1FEBV_c_G4xVbApomutEBDEVcIBhdoPR3uplYGKcG9Jn5IRXJ6-Ux9cxecbb2rI_N1LvF99vXOjAA04rbr4ZFJOoFMoIAcv7IWetJgPptnHjWfDQqBicyupjsh6e_FBV-hn8NH23e-MysFLDQsGBxiKyXjKgo5KyAMwpcqvcDavZbss4e7pm17pbKs8Rt8g8lLGEhRcupnmOy7JXZps-t28MpXIP_55Q7N8gzLnAv0YA4mk8MVfzUJI9vrvI8kdaDB0Os=w773-h1031-no?authuser=0">
+    <img src="https://lh3.googleusercontent.com/TPELcvIt59C9V_RslzlINCbYiWdmfPcszOGcD7dMoHLCETVAQTr9VcdvUI22hg77mnOqpYrXuVcVsjv_Dor3l73Dp1PC4zAm9O9p1guPbIbY-Sz_XgdNpbE7Lt0W_ekDorBaDP7mOmxWCHH6go59PBDKu3ueVQIpv9V5-4xd4H2PJ1-JoOMsvqVbf2eL2uEm7kbGbS9HrcBPdr5pQmjCW58cM6p7unF6dpLwCsiTzXXjBI5Pkmhv8qwZ5wJyKR-zklhVm-0Cvaoddge25GQqsNUmrBna-qurz5AAjVgumdPPAzeNf5MeeCZulF3sk1_uvedj6wy5sSG8UiSP815j6X_uE0ytYhkKT-yhtA2UfMFYvchSknCeMtBP-aMlmGRn57yZjOW1O3moGerAf3M5eJDfiiDJKeuuTjre-W3Jqim7CMkBTkJ9yi3SfzhUvwRhRHwJDOZnopXxuFzfXq1FEBV_c_G4xVbApomutEBDEVcIBhdoPR3uplYGKcG9Jn5IRXJ6-Ux9cxecbb2rI_N1LvF99vXOjAA04rbr4ZFJOoFMoIAcv7IWetJgPptnHjWfDQqBicyupjsh6e_FBV-hn8NH23e-MysFLDQsGBxiKyXjKgo5KyAMwpcqvcDavZbss4e7pm17pbKs8Rt8g8lLGEhRcupnmOy7JXZps-t28MpXIP_55Q7N8gzLnAv0YA4mk8MVfzUJI9vrvI8kdaDB0Os=w773-h1031-no?authuser=0" alt="misty's cute face" width="600" height="400">
+  </a>
+  <div class="desc">Misty's cute face!</div>
+</div>
 
+<div class="gallery">
+  <a target="_blank" href="https://lh3.googleusercontent.com/OHvMljn5xAuJynCEEfwlKrL8VCz7VLgVZjLD_IPbB-zQYcF60tb3dhMF30NAFPAwIR5imGa6P2jVxvfBq-cXjJrMqTDwnH8BswD2gKCWnJXv0eI6dFf5RKvFPsF6Zc61y2XzyKqk6DtvaJciFakaZ_qR-onAD4X1A84gureI3LOtS_VXSX-AvpX8H2PPYlYbmHmqUauk2Cy06fDfK84VrZn372f6Zl94-mOicfX21lVhWhMSORmA-a-KxXMu4MOijJDLRWLnDQlkJP7-ENwapMspjQAZOz3cPqEy1GxjDQwxN8VabbhtDOvYnUl3ffxaR4DB_4cZk6exfCPpudndBo98uFD3631CjOyVNCz9H_nfguxCvLU_97nG5q2l-0YoZ_u7JJGIAP8SbZUgOOtspyzhnZAyHrW6bcJywqpTd3FN2CzMd9eXyp8eAZmtVlvG6sB6jTuVBB8PeDtDCeDZMQYbZp68jK6LUI1a3nXN5S1Zgx3wb3D9UUyDXfad6BxdrwcnYucbzFD7vKb5y9BV4W1Y9aJe4f5yPR8btSpMWjnYpJmz24azulfrh_1bO5ZY9fOJMY5uqx5lsDrGTgp73GTz9zlne5iIKMO5WRDn9Kd8Rp_zHBZrehdKwNNVz1XTPPPYzUbIsDz0haAtjkCPUzLDcBzBUTu9cDpsd6GsfNpwkR9Lshwrj47-7IlBhJ6iYt3bUg4NAcRnQiwzqnursxY=w773-h1031-no?authuser=0">
+    <img src="https://lh3.googleusercontent.com/OHvMljn5xAuJynCEEfwlKrL8VCz7VLgVZjLD_IPbB-zQYcF60tb3dhMF30NAFPAwIR5imGa6P2jVxvfBq-cXjJrMqTDwnH8BswD2gKCWnJXv0eI6dFf5RKvFPsF6Zc61y2XzyKqk6DtvaJciFakaZ_qR-onAD4X1A84gureI3LOtS_VXSX-AvpX8H2PPYlYbmHmqUauk2Cy06fDfK84VrZn372f6Zl94-mOicfX21lVhWhMSORmA-a-KxXMu4MOijJDLRWLnDQlkJP7-ENwapMspjQAZOz3cPqEy1GxjDQwxN8VabbhtDOvYnUl3ffxaR4DB_4cZk6exfCPpudndBo98uFD3631CjOyVNCz9H_nfguxCvLU_97nG5q2l-0YoZ_u7JJGIAP8SbZUgOOtspyzhnZAyHrW6bcJywqpTd3FN2CzMd9eXyp8eAZmtVlvG6sB6jTuVBB8PeDtDCeDZMQYbZp68jK6LUI1a3nXN5S1Zgx3wb3D9UUyDXfad6BxdrwcnYucbzFD7vKb5y9BV4W1Y9aJe4f5yPR8btSpMWjnYpJmz24azulfrh_1bO5ZY9fOJMY5uqx5lsDrGTgp73GTz9zlne5iIKMO5WRDn9Kd8Rp_zHBZrehdKwNNVz1XTPPPYzUbIsDz0haAtjkCPUzLDcBzBUTu9cDpsd6GsfNpwkR9Lshwrj47-7IlBhJ6iYt3bUg4NAcRnQiwzqnursxY=w773-h1031-no?authuser=0" alt="Mikko Thanksgiving" width="600" height="400">
+  </a>
+  <div class="desc">Mikko's Thanksgiving Scarf</div>
+</div>
 	    </div>
 	    <div>
 		<ul class="sidenav">
@@ -504,6 +653,7 @@
 		$('#petEditor').hide();
 		$('#petLog').hide();
 		$('#report').hide();
+		$('#petGallery').hide();
 		var loadFile = function(event) {
     		var reader = new FileReader();
     		reader.onload = function(){
@@ -518,6 +668,7 @@
                        $('#dashboard').hide();
                        $('#petEditor').hide();
 		       $('#report').hide();
+		       $('#petGallery').hide();
 			$.post("/open_api/login", { "loginEmail":$('#loginEmail').val(), "loginPassword":$('#loginPassword').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
@@ -541,6 +692,7 @@
                        $('#dashboard').hide();
                        $('#petEditor').hide();
 			$('#report').hide();
+			$('#petGallery').hide();
 
                         $.post("/open_api/signup", { "signupEmail":$('#signupEmail').val(), "signupPassword":$('#signupPassword').val(), "newUserName":$('#newUserName').val(), "signupCity":$('#signupCity').val(), "signupState":$('#signupState').val()},
                                 function(data, textStatus) {
@@ -566,6 +718,7 @@
 			$('#petEditor').hide();
 			$('#main').hide();
 			$('#report').hide();
+			$('#petGallery').hide();
 		
 			 //make secure call with the jwt
 			secure_get_with_token("/secure_api/get_dash", {} , function(data){
@@ -586,10 +739,11 @@
 			$('#login').hide();
                         $('#signup').hide();
                         $('#petEditor').hide();
-			$('#dashboard').hide();
-			$('#main').show();
+			$('#dashboard').show();
+			$('#main').hide();
 			$('#report').hide();
 			$('#petLog').hide();
+			$('#petGallery').hide();
 		}
 		
 
@@ -620,6 +774,7 @@
                         $('#signup').hide();
 			$('#main').hide();
 			$('#report').hide();
+			$('#petGallery').hide();
 
 
 		}
@@ -650,6 +805,7 @@
                         $('#main').hide();
 			$('#petEditor').hide();
 			$('#report').hide();
+			$('#petGallery').hide();
 
 
 		}
@@ -680,6 +836,7 @@
                         $('#petEditor').hide();
                         $('#main').hide();
 			$('#petLog').hide();
+			$('#petGallery').hide();
 			$('#dashboard').show();
 
                          //make secure call with the jwt
@@ -706,7 +863,19 @@
                 }
 
 
-		
+		//function that shows the pet gallery
+		function showGallery(){
+		        $('#login').hide();
+                        $('#signup').hide();
+                        $('#petEditor').hide();
+                        $('#main').hide();
+                        $('#petLog').hide();
+                        $('#dashboard').hide();
+			$('#petGallery').show();
+
+			
+
+		}		
 
 		
 	</script>

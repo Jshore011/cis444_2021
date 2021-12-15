@@ -401,7 +401,7 @@
   </div>
 </div>
  <div >
-  <div class ="reportTable" id = "petreport">
+  <div class ="reportTable" id = "report">
     <div >
       <div>
         <div class = reportHead>
@@ -469,6 +469,7 @@
                        $('#signup').hide();
                        $('#dashboard').hide();
                        $('#petEditor').hide();
+		       $('#report').hide();
 			$.post("/open_api/login", { "loginEmail":$('#loginEmail').val(), "loginPassword":$('#loginPassword').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
@@ -490,7 +491,8 @@
 		function signup(){
 			$('#login').hide();
                        $('#dashboard').hide();
-                       $('#edituser').hide();
+                       $('#petEditor').hide();
+			$('#report').hide();
 
                         $.post("/open_api/signup", { "signupEmail":$('#signupEmail').val(), "signupPassword":$('#signupPassword').val(), "newUserName":$('#newUserName').val(), "signupCity":$('#signupCity').val(), "signupState":$('#signupState').val()},
                                 function(data, textStatus) {
@@ -515,6 +517,7 @@
                 	$('#signup').hide();
 			$('#petEditor').hide();
 			$('#main').hide();
+			$('#report').hide();
 		
 			 //make secure call with the jwt
 			secure_get_with_token("/secure_api/get_dash", {} , function(data){
@@ -537,6 +540,8 @@
                         $('#petEditor').hide();
 			$('#dashboard').hide();
 			$('#main').show();
+			$('#report').hide();
+			$('#petLog').hide();
 		}
 		
 
@@ -566,6 +571,7 @@
 			$('#login').hide();
                         $('#signup').hide();
 			$('#main').hide();
+			$('#report').hide();
 
 
 		}
@@ -595,6 +601,7 @@
                         $('#signup').hide();
                         $('#main').hide();
 			$('#petEditor').hide();
+			$('#report').hide();
 
 
 		}
